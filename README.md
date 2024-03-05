@@ -5,19 +5,19 @@ This project focuses on managing a small amateur club where members gather for r
 ## Key Features
 
 ### 1. User Management
-- **Registration:** New members can register an account with their details.
-- **Login:** Members, coaches, and the treasurer can log in with their credentials.
-- **Role-based Access:** Each user has specific privileges based on their role.
+- **Registration:** New members can register an account with their details.✅
+- **Login:** Members, coaches, and the treasurer can log in with their credentials.✅
+- **Role-based Access:** Each user has specific privileges based on their role. ✅
 
 ### 2. Practice Management
-- **Scheduling:** Coaches can schedule practice sessions, specifying the date, time, and location.
-- **Practice Attendance:** The system tracks member attendance to sessions.
-- **Payment for Practices:** Members can schedule and pay for practice sessions through the app.
+- **Scheduling:** Coaches can schedule practice sessions, specifying the date, time, and location. ✅
+- **Practice Attendance:** The system tracks member attendance to sessions. ❌
+- **Payment for Practices:** Members can schedule and pay for practice sessions through the app. ❌
 
 ### 3. Financial Management
-- **Track Finances:** The treasurer can view the club's income statement, including revenue and expenses.
-- **Debt Tracking:** Outstanding debts from previous months are logged, allowing the treasurer to prioritize payments.
-- **Payment Reminders:** Reminders are sent to members with outstanding payments.
+- **Track Finances:** The treasurer can view the club's income statement, including revenue and expenses. ❌
+- **Debt Tracking:** Outstanding debts from previous months are logged, allowing the treasurer to prioritize payments. ❌
+- **Payment Reminders:** Reminders are sent to members with outstanding payments. ❌
 
 ## Limitations and Future Improvements
 
@@ -33,17 +33,5 @@ This project focuses on managing a small amateur club where members gather for r
 4. Register or log in as a member, coach, or treasurer.
 5. Explore the available features based on your role.
 
-## Development Roadmap
 
-### Phase 1: Basic Functionality
-- Implement user registration and login.
-- Allow coaches to schedule practices.
-- Enable members to pay for practice sessions.
-
-### Phase 2: Financial Management
-- Introduce financial tracking for revenue and expenses.
-- Implement debt tracking and payment reminders.
-
-### Phase 3: Enhanced Features
-- Integrate payment gateway for seamless transactions.
 - Implement automated notifications for practice reminders and payment alerts.
