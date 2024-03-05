@@ -30,8 +30,9 @@ This project focuses on managing a small amateur club where members gather for r
 1. Clone the repository to your local machine.
 2. Install the necessary dependencies.
 3. Run the application using Python.
-4. Register or log in as a member, coach, or treasurer.
-5. Explore the available features based on your role.
+  ```
+ python main.py
+```
+5. Register or log in as a member, coach, or treasurer.
+6. Explore the available features based on your role.
 
-
-- Implement automated notifications for practice reminders and payment alerts.
