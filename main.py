@@ -80,8 +80,11 @@ class Club:
     def manage_coach_list(self, treasurer):
         if treasurer.role == "Treasurer":
             print("Coach List:")
-            for coach in self.coaches:
-                print(f"Name: {coach['name']}, Contact Info: {coach['contact_info']}")
+            with open('users.txt', 'r') as file:
+                for line in file:
+                    fields = line.strip().split(',')
+                    if len(fields) == 9 and fields[2] == 'Coach':
+                        print(f"Name: {fields[0]}")
             print("\n1. Add Coach")
             print("2. Back")
             option = input("Enter your choice (1-2): ")
@@ -163,7 +166,7 @@ class Club:
                 print(f"Reminder sent to {user.username}: Practice scheduled on {date} at {time} in {location}.")
 
     def track_club_finances(self):
-        total_revenue = sum(self.payments.values())
+        total_revenue = sum(self.payments.values()) + (len(self.users) * self.SESSION_FEE)  # Include session fees
         total_expenses = sum(self.expenses.values())  # Calculate total expenses
         # Print income statement
         print("Income Statement:")
