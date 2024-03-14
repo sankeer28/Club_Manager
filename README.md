@@ -37,8 +37,8 @@ This project focuses on managing a small amateur club where members gather for r
 6. Explore the available features based on your role.
 
 
-coach can add and delete members
-member, coach and treasurer can register account and logout
-treasurer can schedule practice and delete practice
-member can view schedule practices
-treasurer can add new coach and delete coach
+- coach can add and delete members
+- member, coach and treasurer can register account and logout
+- treasurer can schedule practice and delete practice
+- member can view schedule practices
+- treasurer can add new coach and delete coach
