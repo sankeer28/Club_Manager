@@ -17,64 +17,73 @@
                 </tr>
             </thead>
             <tbody>
-                <!-- Coaches will be dynamically added here -->
             </tbody>
         </table>
         <br>
         <a href="{{ url_for('treasurer_dashboard') }}">Back to Treasurer Dashboard</a>
     </div>
 
-    <script>
-        // Function to fetch and display coaches
-        async function fetchAndDisplayCoaches() {
-            try {
-                const response = await fetch('/api/coaches');
-                const coaches = await response.json();
-                const coachesTable = document.getElementById('coaches-table').getElementsByTagName('tbody')[0];
-                coachesTable.innerHTML = ''; // Clear previous table rows
-                coaches.forEach(coach => {
-                    const row = coachesTable.insertRow();
-                    const cell1 = row.insertCell(0);
-                    const cell2 = row.insertCell(1);
-                    cell1.textContent = coach.name;
-                    const removeButton = document.createElement('button');
-                    removeButton.textContent = 'Remove';
-                    removeButton.addEventListener('click', () => {
-                        removeCoach(coach.username); // Pass the username to the function
-                    });
-                    cell2.appendChild(removeButton);
+   <!-- HTML code -->
+<script>
+
+    async function fetchAndDisplayCoaches() {
+        try {
+            const response = await fetch('/api/coaches');
+            const coaches = await response.json();
+            const coachesTable = document.getElementById('coaches-table').getElementsByTagName('tbody')[0];
+            coachesTable.innerHTML = '';
+            coaches.forEach(coach => {
+                const row = coachesTable.insertRow();
+                const cell1 = row.insertCell(0);
+                const cell2 = row.insertCell(1);
+                cell1.textContent = coach.name;
+                const removeButton = document.createElement('button');
+                removeButton.textContent = 'Remove';
+                removeButton.addEventListener('click', () => {
+                    removeCoach(coach.username, coach.email); 
                 });
-            } catch (error) {
-                console.error('Error fetching coaches:', error);
-            }
+                cell2.appendChild(removeButton);
+            });
+        } catch (error) {
+            console.error('Error fetching coaches:', error);
         }
-    
-        // Function to remove a coach
-        async function removeCoach(username) {
-            try {
-                const response = await fetch('/api/remove_coach', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({ username })
-                });
-                if (response.ok) {
-                    // Refresh the list of coaches after removal
-                    fetchAndDisplayCoaches();
-                } else {
-                    console.error('Failed to remove coach');
-                }
-            } catch (error) {
-                console.error('Error removing coach:', error);
+    }
+
+    async function removeCoach(username, coachEmail) {
+        try {
+            const response = await fetch('/api/remove_coach', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ username })
+            });
+            if (response.ok) {
+                sendCoachRemovalEmail(coachEmail);
+                fetchAndDisplayCoaches();
+            } else {
+                console.error('Failed to remove coach');
             }
+        } catch (error) {
+            console.error('Error removing coach:', error);
         }
-    
-        // Call the function to fetch and display coaches when the page loads
-        document.addEventListener('DOMContentLoaded', () => {
-            fetchAndDisplayCoaches();
-        });
-    </script>
+    }
+
+    async function sendCoachRemovalEmail(coachEmail) {
+        try {
+            const subject = 'You have been removed';
+            const body = `Dear Coach,\n\nUnfortunately, we have had to remove you from your position. We appreciate your contributions and wish you all the best in your future endeavors.\n\nSincerely,\nManagement`;
+            const mailtoLink = `https://mail.google.com/mail/?view=cm&to=${coachEmail}&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+            window.open(mailtoLink, '_blank');
+        } catch (error) {
+            console.error('Error sending removal email to coach:', error);
+        }
+    }
+    document.addEventListener('DOMContentLoaded', () => {
+        fetchAndDisplayCoaches();
+    });
+</script>
+
     
 </body>
 </html>

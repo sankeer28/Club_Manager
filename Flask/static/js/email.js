@@ -1,4 +1,4 @@
-const csvFile = '../../users.csv'; // Adjust the path to match the location of the CSV file
+const csvFile = '../../users.csv'; 
 
 function processCSV() {
     fetch(csvFile)
@@ -6,11 +6,11 @@ function processCSV() {
         .then(csvData => {
             const rows = csvData.split('\n');
             const tableBody = document.getElementById('tableBody');
-            tableBody.innerHTML = ''; // Clear existing table data
+            tableBody.innerHTML = ''; 
 
             for (let i = 1; i < rows.length; i++) {
                 const columns = rows[i].split(',');
-                const role = columns[2].trim().toLowerCase(); // Role column
+                const role = columns[2].trim().toLowerCase();
                 if (role === 'member') {
                     const name = columns[5];
                     const email = columns[3];
@@ -29,10 +29,7 @@ function processCSV() {
         })
         .catch(error => console.error('Error fetching CSV:', error));
 }
-
-// Call the processCSV() function when the page loads
 document.addEventListener('DOMContentLoaded', processCSV);
-
 
 function selectAllCheckboxes() {
     const checkboxes = document.querySelectorAll('.emailCheckbox');
@@ -66,7 +63,7 @@ function sendEmail() {
 }
 
 function goToCoachDashboard() {
-    window.location.href = "{{ url_for('coach_dashboard') }}"; // Redirect to Coach Dashboard
+    window.location.href = "{{ url_for('coach_dashboard') }}"; 
 }
 
-processCSV(); // Call the function to fetch and display members when the page loads
+processCSV(); 

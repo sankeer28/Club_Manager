@@ -1,12 +1,12 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #f0f8f9; /* Light teal background color */
+    background-color: #f0f8f9;
 }
 
 .container {
-    width: 40%; /* Adjusted width for responsiveness */
+    width: 40%; 
     margin: 100px auto;
-    background-color: #ffffff; /* White container background */
+    background-color: #ffffff; 
     padding: 20px;
     border-radius: 5px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
@@ -28,7 +28,7 @@ label {
 
 input[type="text"],
 input[type="password"] {
-    width: 97%; /* Adjusted width to be same as container */
+    width: 97%; 
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
@@ -37,7 +37,7 @@ input[type="password"] {
 button {
     width: 100%;
     padding: 10px;
-    background-color: #1abc9c; /* Teal button color */
+    background-color: #1abc9c; 
     color: #fff;
     border: none;
     border-radius: 5px;
@@ -45,7 +45,7 @@ button {
 }
 
 button:hover {
-    background-color: #16a085; /* Darker teal hover color */
+    background-color: #16a085; 
 }
 
 .message {
@@ -53,14 +53,14 @@ button:hover {
     margin-bottom: 10px;
 }
 
-/* Media query for smaller screens */
+
 @media (max-width: 768px) {
     .container {
-        width: 90%; /* Adjusted width for smaller screens */
+        width: 90%; 
     }
     
     input[type="text"],
     input[type="password"] {
-        width: calc(100% - 20px); /* Adjusted width to fit container with padding */
+        width: calc(100% - 20px); 
     }
 }

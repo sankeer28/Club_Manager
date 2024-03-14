@@ -1,13 +1,13 @@
-/* remove_coach.css */
+
 body {
     font-family: Arial, sans-serif;
-    background-color: #f0f8f9; /* Light teal background color */
+    background-color: #f0f8f9; 
 }
 
 .container {
-    width: 80%; /* Adjusted width for responsiveness */
+    width: 80%; 
     margin: 100px auto;
-    background-color: #ffffff; /* White container background */
+    background-color: #ffffff; 
     padding: 20px;
     border-radius: 5px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
@@ -33,9 +33,9 @@ li:last-child {
 }
 
 button {
-    width: 100px; /* Adjusted width for the button */
+    width: 100px; 
     padding: 8px;
-    background-color: #e74c3c; /* Red button color */
+    background-color: #e74c3c; 
     color: #fff;
     border: none;
     border-radius: 5px;
@@ -43,36 +43,35 @@ button {
 }
 
 button:hover {
-    background-color: #c0392b; /* Darker red hover color */
+    background-color: #c0392b;
 }
 
 a {
     display: block;
-    width: 200px; /* Adjusted width for the button */
+    width: 200px; 
     margin: 20px auto 0;
     padding: 10px;
     text-align: center;
-    background-color: #1abc9c; /* Teal button color */
+    background-color: #1abc9c; 
     color: #fff;
     text-decoration: none;
     border-radius: 5px;
 }
 
 a:hover {
-    background-color: #16a085; /* Darker teal hover color */
+    background-color: #16a085; 
 }
 
-/* remove_coach.css */
 
 body {
     font-family: Arial, sans-serif;
-    background-color: #f0f8f9; /* Light teal background color */
+    background-color: #f0f8f9; 
 }
 
 .container {
-    width: 20%; /* Adjusted width for responsiveness */
+    width: 20%; 
     margin: 100px auto;
-    background-color: #ffffff; /* White container background */
+    background-color: #ffffff; 
     padding: 20px;
     border-radius: 5px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
@@ -84,10 +83,10 @@ h1 {
 }
 
 table {
-    width: 20%; /* Adjusted width for the table */
-    margin: 0 auto; /* Center the table horizontally */
+    width: 20%; 
+    margin: 0 auto; 
     border-collapse: collapse;
-    border: 1px solid #dddddd; /* Add border to the table */
+    border: 1px solid #dddddd; 
 }
 
 th, td {
@@ -101,9 +100,9 @@ th {
 }
 
 button {
-    width: 100px; /* Adjusted width for the button */
+    width: 100px; 
     padding: 8px;
-    background-color: #e74c3c; /* Red button color */
+    background-color: #e74c3c; 
     color: #fff;
     border: none;
     border-radius: 5px;
@@ -111,21 +110,21 @@ button {
 }
 
 button:hover {
-    background-color: #c0392b; /* Darker red hover color */
+    background-color: #c0392b; 
 }
 
 a {
     display: block;
-    width: 200px; /* Adjusted width for the button */
+    width: 200px; 
     margin: 20px auto 0;
     padding: 10px;
     text-align: center;
-    background-color: #1abc9c; /* Teal button color */
+    background-color: #1abc9c; 
     color: #fff;
     text-decoration: none;
     border-radius: 5px;
 }
 
 a:hover {
-    background-color: #16a085; /* Darker teal hover color */
+    background-color: #16a085; 
 }

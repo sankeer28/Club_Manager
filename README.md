@@ -28,9 +28,12 @@ This project focuses on managing a small amateur club where members gather for r
 ## Usage Instructions
 
 1. Clone the repository to your local machine.
-2. Install the necessary dependencies.
+2. Install the necessary dependencies. 
+```
+ pip install Flask
+```
 3. Run the application using Python.
-  ```
+```
  python main.py
 ```
 5. Register or log in as a member, coach, or treasurer.
@@ -42,3 +45,7 @@ This project focuses on managing a small amateur club where members gather for r
 - treasurer can schedule practice and delete practice
 - member can view schedule practices
 - treasurer can add new coach and delete coach
+- when coach or member is removed they can get an optional email telling them they have been removed from the club
+
+
+- set schedule  uses OpenStreetMap  and Nominatim API to turn coordinates from clicking on map to named location

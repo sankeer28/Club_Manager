@@ -1,14 +1,13 @@
-/* add_member.css */
 
 body {
     font-family: Arial, sans-serif;
-    background-color: #f0f8f9; /* Light teal background color */
+    background-color: #f0f8f9; 
 }
 
 .container {
-    width: 40%; /* Adjusted width for responsiveness */
+    width: 40%; 
     margin: 100px auto;
-    background-color: #ffffff; /* White container background */
+    background-color: #ffffff;
     padding: 20px;
     border-radius: 5px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
@@ -29,18 +28,18 @@ input[type="password"],
 input[type="email"],
 input[type="tel"],
 textarea {
-    width: 97%; /* Adjusted width to be same as container */
+    width: 97%; 
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
-    margin-bottom: 10px; /* Added margin for better spacing */
+    margin-bottom: 10px; 
 }
 
 /* CSS for submit button */
 button[type="submit"] {
     width: 100%;
     padding: 10px;
-    background-color: #1abc9c; /* Teal button color */
+    background-color: #1abc9c; 
     color: #fff;
     border: none;
     border-radius: 5px;
@@ -48,27 +47,24 @@ button[type="submit"] {
 }
 
 button[type="submit"]:hover {
-    background-color: #16a085; /* Darker teal hover color */
+    background-color: #16a085; 
 }
 
 input[type="hidden"] {
-    display: none; /* Hide hidden input field */
+    display: none; 
 }
 
-/* add_member.css */
-
-/* CSS for styling the cancel button */
 .cancel-button {
-    width: 100%; /* Adjusted width for responsiveness */
+    width: 100%; 
     padding: 10px;
-    background-color: #e74c3c; /* Red button color */
+    background-color: #e74c3c; 
     color: #fff;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    margin-top: 20px; /* Add margin for spacing */
+    margin-top: 20px; 
 }
 
 .cancel-button:hover {
-    background-color: #c0392b; /* Darker red hover color */
+    background-color: #c0392b; 
 }

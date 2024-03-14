@@ -34,7 +34,7 @@
             <label>Selected Emails:</label>
             <input type="text" id="selectedEmailsInput" readonly>
         </div>
-        <button class="back-button" onclick="goToCoachDashboard()">Back to Coach Dashboard</button> <!-- Button to go back to Coach Dashboard -->
+        <button class="back-button" onclick="goToCoachDashboard()">Back to Coach Dashboard</button> 
     </div>
     <script>
         function fetchMembers() {
@@ -42,7 +42,7 @@
                 .then(response => response.json())
                 .then(members => {
                     const tableBody = document.getElementById('tableBody');
-                    tableBody.innerHTML = ''; // Clear existing table data
+                    tableBody.innerHTML = ''; 
                     members.forEach(member => {
                         const row = document.createElement('tr');
                         row.innerHTML = `
@@ -57,13 +57,12 @@
                 .catch(error => console.error('Error fetching members:', error));
         }
     
-        // Call fetchMembers() when the page loads
         document.addEventListener('DOMContentLoaded', fetchMembers);
     
         function selectAllCheckboxes() {
             const checkboxes = document.querySelectorAll('.emailCheckbox');
             checkboxes.forEach(checkbox => {
-                checkbox.checked = !checkbox.checked; // Toggle checkbox state
+                checkbox.checked = !checkbox.checked; 
             });
             updateSelectedEmails();
         }
@@ -92,7 +91,7 @@
         }
     
         function goToCoachDashboard() {
-            window.location.href = "{{ url_for('coach_dashboard') }}"; // Redirect to Coach Dashboard
+            window.location.href = "{{ url_for('coach_dashboard') }}";
         }
     </script>
     

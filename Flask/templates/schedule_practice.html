@@ -4,7 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Schedule Practice</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/schedule_practice.css') }}">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/schedule_practice.css') }}"> 
+    <style>
+        #map {
+            height: 300px; /* Set the height of the map container */
+            margin-bottom: 10px; /* Add some space below the map */
+        }
+    </style>
 </head>
 <body>
     <h1>Schedule Practice</h1>
@@ -14,13 +24,32 @@
         <label for="time">Time:</label>
         <input type="time" id="time" name="time" required>
         <label for="location">Location:</label>
-        <input type="text" id="location" name="location" required>
+        <input type="text" id="location" name="location" placeholder="Enter location" required>
+        <div id="map"></div> 
         <button type="submit">Schedule Practice</button>
-    </form>
-    {% if session['role'] == 'Treasurer' %}
-        <a href="{{ url_for('treasurer_dashboard') }}" class="button">Back to Treasurer Dashboard</a>
-    {% elif session['role'] == 'Coach' %}
+        {% if session['role'] == 'Treasurer' %}
+        <a href="{{ url_for('treasurer_dashboard') }}" class="button">Cancel</a>
+       {% elif session['role'] == 'Coach' %}<!-- remove this later-->
         <a href="{{ url_for('coach_dashboard') }}" class="button">Back to Coach Dashboard</a>
-    {% endif %}
+        {% endif %}
+    </form>
+    <script>
+        var map = L.map('map', {
+            center: [43.65107, -79.347015], 
+            zoom: 10, 
+            attributionControl: false 
+        });
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
+        L.Control.geocoder().addTo(map);
+        map.on('click', function(e) {
+            fetch(`https://nominatim.openstreetmap.org/reverse?lat=${e.latlng.lat}&lon=${e.latlng.lng}&format=json`)
+            .then(response => response.json())
+            .then(data => {
+                const locationName = data.display_name;
+                document.getElementById('location').value = locationName; 
+            })
+            .catch(error => console.error('Error fetching location data:', error));
+        });
+    </script>
 </body>
 </html>

@@ -1,21 +1,21 @@
-/* CSS styles from email.css */
+
 body {
     font-family: Arial, sans-serif;
-    background-color: #f0f8f9; /* Light teal background color */
+    background-color: #f0f8f9; 
 }
 
 .container {
-    width: 60%; /* Adjusted width for responsiveness */
+    width: 60%; 
     margin: 100px auto;
-    background-color: #ffffff; /* White container background */
+    background-color: #ffffff; 
     padding: 20px;
     border-radius: 5px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    text-align: center; /* Center align container content */
+    text-align: center; 
 }
 
 h1 {
-    margin-bottom: 10px; /* Reduce margin for h1 */
+    margin-bottom: 10px; 
 }
 
 .subheading {
@@ -73,40 +73,40 @@ textarea {
     cursor: pointer;
 }
 
-/* Additional styling for Select All button */
+
 button.select-all-button {
     background-color: #2196F3;
     color: white;
-    margin-right: 10px; /* Add space between buttons */
+    margin-right: 10px; 
 }
 
 button.select-all-button:hover {
     background-color: #1976D2;
 }
 
-/* Additional styles for Send Email button */
+
 button.send-email-button {
     background-color: #4CAF50;
     color: #fff;
-    margin-right: 10px; /* Add space between buttons */
+    margin-right: 10px; 
 }
 
 button.send-email-button:hover {
     background-color: #45a049;
 }
 
-/* Additional styles for Back button */
+
 button.back-button {
     background-color: #bd1e1e;
     color: white;
-    margin-left: 10px; /* Add space between buttons */
+    margin-left: 10px; 
 }
 
 button.back-button:hover {
     background-color: #a41e1e;
 }
 
-/* Additional styles for all buttons */
+
 button {
     padding: 10px 20px;
     border: none;
@@ -115,5 +115,5 @@ button {
 }
 
 button:hover {
-    opacity: 0.8; /* Reduce opacity on hover for all buttons */
+    opacity: 0.8; 
 }

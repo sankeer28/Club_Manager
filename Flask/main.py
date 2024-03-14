@@ -5,10 +5,10 @@ import csv
 import os
 
 app = Flask(__name__, static_url_path='/static')
-app.secret_key = secrets.token_hex(24)  # Set the secret key
+app.secret_key = secrets.token_hex(24) 
 
 club = Club()
-club.load_users_from_csv()  # Update method call
+club.load_users_from_csv() 
 
 # Function to save scheduled practice to CSV file
 def save_practice_to_csv(date, time, location):
@@ -22,7 +22,7 @@ def get_scheduled_practices(skip_header=True):
     with open('scheduled_practices.csv', newline='') as csvfile:
         reader = csv.reader(csvfile)
         if skip_header:
-            next(reader)  # Skip the header row
+            next(reader)  
         for row in reader:
             if len(row) >= 3:
                 practice = {'Date': row[0], 'Time': row[1], 'Location': row[2]}
@@ -57,7 +57,7 @@ def register():
         payment_preferences = request.form.get('payment_preferences')
         new_member = User(username, password, role, email, phone, name, address, payment_preferences)
         club.users.append(new_member)
-        club.save_users_to_csv()  # Update method call
+        club.save_users_to_csv() 
         return redirect(url_for('login'))
     return render_template('register.html')
 
@@ -68,8 +68,8 @@ def login():
         password = request.form['password']
         user = next((user for user in club.users if user.username == username and user.password == password), None)
         if user:
-            session['username'] = user.username  # Store username in session
-            session['role'] = user.role  # Store user role in session
+            session['username'] = user.username  
+            session['role'] = user.role  
             if user.role == "Coach":
                 return redirect(url_for('coach_dashboard'))
             elif user.role == "Treasurer":
@@ -129,7 +129,7 @@ def add_coach():
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
-        role = 'Coach'  # Set role as "Coach" by default
+        role = 'Coach'  
         email = request.form['email']
         phone = request.form['phone']
         name = request.form.get('name')
@@ -151,7 +151,7 @@ def schedule_practice():
         date = request.form.get('date')
         time = request.form.get('time')
         location = request.form.get('location')
-        save_practice_to_csv(date, time, location)  # Save practice to CSV
+        save_practice_to_csv(date, time, location)  
         return redirect(url_for('treasurer_dashboard'))
 
     return render_template('schedule_practice.html')
@@ -167,22 +167,15 @@ def api_remove_member():
             data = request.json
             username = data.get('username')
             
-            # Check if the user exists in the club
+            
             user_to_remove = next((user for user in club.users if user.username == username), None)
             if user_to_remove:
-                # Remove the user from the club
                 club.users.remove(user_to_remove)
-                
-                # Save the updated user list to CSV
-                club.save_users_to_csv()
-                
-                # Return success message
+                club.save_users_to_csv()            
                 return jsonify({'message': 'Member removed successfully'}), 200
             else:
-                # Return error message if user not found
                 return jsonify({'error': 'User not found'}), 404
         except Exception as e:
-            # Return error message for other exceptions
             return jsonify({'error': str(e)}), 500
 
 
@@ -200,26 +193,15 @@ def api_remove_coach():
         try:
             data = request.json
             username = data.get('username')
-            
-            # Check if the coach exists in the club's coaches list
             coach_to_remove = next((coach for coach in club.users if coach.username == username and coach.role == 'Coach'), None)
             if coach_to_remove:
-                # Remove the coach from the club's coaches list
                 club.users.remove(coach_to_remove)
-                
-                # Save the updated coaches list to CSV or database
-                club.save_users_to_csv()  # or club.save_coaches_to_db() depending on your implementation
-                
-                # Return success message
+                club.save_users_to_csv() 
                 return jsonify({'message': 'Coach removed successfully'}), 200
             else:
-                # Return error message if coach not found
                 return jsonify({'error': 'Coach not found'}), 404
         except Exception as e:
-            # Return error message for other exceptions
             return jsonify({'error': str(e)}), 500
-
-# Function to read users from CSV and return a list of dictionaries
 def read_users_from_csv():
     users = []
     with open('users.csv', newline='') as csvfile:
@@ -230,8 +212,7 @@ def read_users_from_csv():
                 'name': row['name'],
                 'email': row['email'],
                 'phone': row['phone'],
-                'role': row['role'],
-                'coachName': row['coachName']  # Include coach's name field
+                'role': row['role']
             })
     return users
 
@@ -247,25 +228,20 @@ def get_members():
                 members.append({
                     'username': row['username'],
                     'name': row['name'],
-                    'email': row['email'],  # Include email
-                    'phone': row['phone'],   # Include phone number
+                    'email': row['email'],
+                    'phone': row['phone'],   
                 })
     return jsonify(members)
 
 
 @app.route('/api/coaches')
 def api_get_coaches():
-    coaches_data = [{'username': coach.username, 'name': coach.name} for coach in club.users if coach.role == 'Coach']
+    coaches_data = [{'username': coach['username'], 'name': coach['name'], 'email': coach['email']} for coach in read_users_from_csv() if coach['role'] == 'Coach']
     return jsonify(coaches_data)
-
-
-
-
-
 
 @app.route('/view_attendance')
 def view_attendance():
-    attendance_data = {'username1': 10, 'username2': 15}  # Sample data
+    attendance_data = {'username1': 10, 'username2': 15}  
     return render_template('view_attendance.html', attendance_data=attendance_data)
 
 @app.route('/treasurer_dashboard')
@@ -278,12 +254,12 @@ def member_dashboard():
 
 @app.route('/logout', methods=['GET', 'POST'])
 def logout():
-    session.pop('username', None)  # Remove 'username' from session
+    session.pop('username', None)  
     return redirect(url_for('index'))
 
 @app.route('/view_schedule')
 def view_schedule():
-    scheduled_practices = get_scheduled_practices()  # Retrieve scheduled practices from CSV
+    scheduled_practices = get_scheduled_practices()  
     return render_template('view_schedule.html', scheduled_practices=scheduled_practices)
 
 @app.route('/delete_practice', methods=['POST'])
@@ -292,21 +268,20 @@ def delete_practice():
         date = request.form.get('date')
         time = request.form.get('time')
         location = request.form.get('location')
-        delete_practice_from_csv(date, time, location)  # Delete practice from CSV
-        return redirect(url_for('treasurer_dashboard'))  # Always redirect to treasurer dashboard after deletion
-    return redirect(url_for('coach_dashboard'))  # Redirect to coach dashboard if role not found
+        delete_practice_from_csv(date, time, location)  
+        return redirect(url_for('treasurer_dashboard'))  
+    return redirect(url_for('coach_dashboard'))  
 
 
 @app.route('/manage_schedule', methods=['GET', 'POST'])
 def manage_schedule():
     if request.method == 'POST':
         if request.form.get('action') == 'delete':
-            # Delete practice from CSV
             date = request.form.get('date')
             time = request.form.get('time')
             location = request.form.get('location')
             delete_practice_from_csv(date, time, location)
-    scheduled_practices = get_scheduled_practices(skip_header=True)  # Skip the header row
+    scheduled_practices = get_scheduled_practices(skip_header=True)  
     return render_template('manage_schedule.html', scheduled_practices=scheduled_practices)
 
 
