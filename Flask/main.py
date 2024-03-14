@@ -219,7 +219,21 @@ def api_remove_coach():
             # Return error message for other exceptions
             return jsonify({'error': str(e)}), 500
 
-
+# Function to read users from CSV and return a list of dictionaries
+def read_users_from_csv():
+    users = []
+    with open('users.csv', newline='') as csvfile:
+        reader = csv.DictReader(csvfile)
+        for row in reader:
+            users.append({
+                'username': row['username'],
+                'name': row['name'],
+                'email': row['email'],
+                'phone': row['phone'],
+                'role': row['role'],
+                'coachName': row['coachName']  # Include coach's name field
+            })
+    return users
 
 
 
@@ -234,7 +248,7 @@ def get_members():
                     'username': row['username'],
                     'name': row['name'],
                     'email': row['email'],  # Include email
-                    'phone': row['phone']   # Include phone number
+                    'phone': row['phone'],   # Include phone number
                 })
     return jsonify(members)
 

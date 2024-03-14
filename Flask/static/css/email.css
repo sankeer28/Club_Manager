@@ -1,20 +1,25 @@
- /* CSS styles from email.css */
- body {
+/* CSS styles from email.css */
+body {
     font-family: Arial, sans-serif;
     background-color: #f0f8f9; /* Light teal background color */
 }
 
 .container {
-    width: 70%; /* Adjusted width for responsiveness */
+    width: 60%; /* Adjusted width for responsiveness */
     margin: 100px auto;
     background-color: #ffffff; /* White container background */
     padding: 20px;
     border-radius: 5px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    text-align: center; /* Center align container content */
 }
 
 h1 {
-    text-align: center;
+    margin-bottom: 10px; /* Reduce margin for h1 */
+}
+
+.subheading {
+    font-size: 1.2em;
     margin-bottom: 20px;
 }
 
@@ -31,20 +36,6 @@ th, td {
 
 th {
     background-color: #f2f2f2;
-}
-
-button {
-    width: 100px; /* Adjusted width for the button */
-    padding: 8px;
-    background-color: #e74c3c; /* Red button color */
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-button:hover {
-    background-color: #c0392b; /* Darker red hover color */
 }
 
 label {
@@ -70,19 +61,6 @@ textarea {
     margin-top: 20px;
 }
 
-.container {
-    text-align: center;
-}
-
-h1 {
-    margin-bottom: 10px;
-}
-
-.subheading {
-    font-size: 1.2em;
-    margin-bottom: 20px;
-}
-
 .button-container {
     margin-top: 20px;
 }
@@ -90,25 +68,52 @@ h1 {
 .button-container button {
     margin: 5px;
     padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
 }
 
-.select-all-button {
+/* Additional styling for Select All button */
+button.select-all-button {
     background-color: #2196F3;
     color: white;
-    border: none;
-    cursor: pointer;
+    margin-right: 10px; /* Add space between buttons */
 }
 
-.back-button {
+button.select-all-button:hover {
+    background-color: #1976D2;
+}
+
+/* Additional styles for Send Email button */
+button.send-email-button {
     background-color: #4CAF50;
+    color: #fff;
+    margin-right: 10px; /* Add space between buttons */
+}
+
+button.send-email-button:hover {
+    background-color: #45a049;
+}
+
+/* Additional styles for Back button */
+button.back-button {
+    background-color: #bd1e1e;
     color: white;
+    margin-left: 10px; /* Add space between buttons */
+}
+
+button.back-button:hover {
+    background-color: #a41e1e;
+}
+
+/* Additional styles for all buttons */
+button {
+    padding: 10px 20px;
     border: none;
+    border-radius: 5px;
     cursor: pointer;
 }
 
-.send-email-button {
-    background-color: #f44336;
-    color: white;
-    border: none;
-    cursor: pointer;
+button:hover {
+    opacity: 0.8; /* Reduce opacity on hover for all buttons */
 }

@@ -8,7 +8,7 @@
 </head>
 <body>
     <div class="container">
-        <h1>Member List</h1>
+        <h1>Email Members</h1>
         <table id="memberTable">
             <thead>
                 <tr>
@@ -26,15 +26,15 @@
             <br>
             <textarea id="emailBody" rows="5" placeholder="Enter email body"></textarea>
             <br>
-            <button onclick="sendEmail()">Send Email</button>
-            <button onclick="selectAllCheckboxes()">Select All</button>
+            <button class="send-email-button" onclick="sendEmail()">Send Email</button>
+            <button class="select-all-button" onclick="selectAllCheckboxes()">Select All / Unselect All</button>
         </div>
         <br>
         <div class="selected-emails">
             <label>Selected Emails:</label>
             <input type="text" id="selectedEmailsInput" readonly>
         </div>
-        <button onclick="goToCoachDashboard()">Back to Coach Dashboard</button> <!-- Button to go back to Coach Dashboard -->
+        <button class="back-button" onclick="goToCoachDashboard()">Back to Coach Dashboard</button> <!-- Button to go back to Coach Dashboard -->
     </div>
     <script>
         function fetchMembers() {
@@ -63,7 +63,7 @@
         function selectAllCheckboxes() {
             const checkboxes = document.querySelectorAll('.emailCheckbox');
             checkboxes.forEach(checkbox => {
-                checkbox.checked = true;
+                checkbox.checked = !checkbox.checked; // Toggle checkbox state
             });
             updateSelectedEmails();
         }

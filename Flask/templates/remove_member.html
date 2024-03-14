@@ -40,7 +40,7 @@
                     const removeButton = document.createElement('button');
                     removeButton.textContent = 'Remove';
                     removeButton.addEventListener('click', () => {
-                        removeMember(member.username);
+                        openGmailComposeAndRemove(member.email, member.username, member.name, member.coachName);
                     });
                     cell2.appendChild(removeButton);
                 });
@@ -49,24 +49,30 @@
             }
         }
     
-        // Function to remove a member
-        async function removeMember(username) {
+        // Function to open Gmail compose with recipient's email address and remove member from CSV
+        async function openGmailComposeAndRemove(email, username, memberName, coachName) {
             try {
-                const response = await fetch('/api/remove_member', {
+                // Remove member from CSV
+                const removeResponse = await fetch('/api/remove_member', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
                     },
                     body: JSON.stringify({ username })
                 });
-                if (response.ok) {
-                    // Refresh the list of members after removal
-                    fetchAndDisplayMembers();
-                } else {
-                    console.error('Failed to remove member');
+                if (!removeResponse.ok) {
+                    throw new Error('Failed to remove member');
                 }
+                // Open Gmail compose with subject and message
+                const subject = 'You have been removed';
+                const body = `Dear ${memberName},\n\nUnfortunately, we have had to remove you from the team. We appreciate your contributions and wish you all the best in your future endeavors.\n\nSincerely,\nCoach`;
+                const mailtoLink = `https://mail.google.com/mail/?view=cm&to=${email}&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+                window.open(mailtoLink, '_blank');
             } catch (error) {
-                console.error('Error removing member:', error);
+                console.error('Error:', error);
+            } finally {
+                // Fetch and display updated members after removal
+                fetchAndDisplayMembers();
             }
         }
     
