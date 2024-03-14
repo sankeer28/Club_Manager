@@ -1,8 +1,7 @@
 # MEM: Recreation Club Membership
 
 This project focuses on managing a small amateur club where members gather for regular practices, led by an amateur coach. The club meets weekly, and members are free to attend as they wish. However, they are required to pay for each practice session, either individually or in advance for a month. The treasurer handles the club's finances, including collecting payments, paying the coach, and covering monthly expenses like rent.
-## ‼️‼️Note: 
-- schedule is not saved to txt document, will be lost upon reload
+
 ## Key Features
 
 ### 1. User Management
@@ -38,39 +37,8 @@ This project focuses on managing a small amateur club where members gather for r
 6. Explore the available features based on your role.
 
 
-my_club_app/
-│
-├── static/
-│   ├── css/
-│   │   ├── styles.css
-│   │   ├──login.css
-│   │   ├──view_schedule.css
-│   │   └──register.css
-│   └── js/
-│       └── script.js
-│
-├── templates/
-│   ├── add_coach.html
-│   ├── add_member.html
-│   ├── manage_schedule.html
-│   ├── remove_coach.html
-│   ├── remove_member.html
-│   ├── index.html
-│   ├── register.html
-│   ├── coach_dashboard.html
-│   ├── schedule_practice.html
-│   ├── view_attendance.html  need to do
-│   ├── treasurer_dashboard.html
-│   ├── member_dashboard.html
-│   └── view_schedule.html
-│
-├── app.py
-├── club.py
-├── scheduled_practices.csv
-└── users.csv
-
-coach can add and delete members
-member, coach and treasurer can register account and logout
-treasurer can schedule practice and delete practice
-member can view schedule practices
-treasurer can add new coach and delete coach
+- coach can add and delete members
+- member, coach and treasurer can register account and logout
+- treasurer can schedule practice and delete practice
+- member can view schedule practices
+- treasurer can add new coach and delete coach
