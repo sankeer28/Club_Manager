@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Schedule</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <h1>Manage Schedule</h1>
+    <ul>
+        {% for practice in scheduled_practices %}
+            <li>Date: {{ practice['Date'] }}, Time: {{ practice['Time'] }}, Location: {{ practice['Location'] }}
+                <form action="{{ url_for('delete_practice') }}" method="post" style="display: inline;">
+                    <input type="hidden" name="date" value="{{ practice['Date'] }}">
+                    <input type="hidden" name="time" value="{{ practice['Time'] }}">
+                    <input type="hidden" name="location" value="{{ practice['Location'] }}">
+                    <button type="submit">Delete</button>
+                </form>
+            </li>
+        {% endfor %}
+    </ul>
+    <a href="{{ url_for('coach_dashboard') }}">Back to Coach Dashboard</a>
+</body>
+</html>

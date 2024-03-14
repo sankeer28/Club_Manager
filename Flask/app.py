@@ -16,22 +16,30 @@ def save_practice_to_csv(date, time, location):
         writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
         writer.writerow({'Date': date, 'Time': time, 'Location': location})
 
-# Function to retrieve scheduled practices from CSV file
-def get_scheduled_practices():
+def get_scheduled_practices(skip_header=True):
     scheduled_practices = []
     with open('scheduled_practices.csv', newline='') as csvfile:
         reader = csv.reader(csvfile)
+        if skip_header:
+            next(reader)  # Skip the header row
         for row in reader:
-            if len(row) >= 3:  # Check if the row has at least 3 elements
+            if len(row) >= 3:
                 practice = {'Date': row[0], 'Time': row[1], 'Location': row[2]}
-                if practice not in scheduled_practices:  # Check if practice entry already exists
-                    scheduled_practices.append(practice)
+                scheduled_practices.append(practice)
     return scheduled_practices
 
 
 
-
-
+# Function to delete a scheduled practice from CSV file
+def delete_practice_from_csv(date, time, location):
+    scheduled_practices = get_scheduled_practices()
+    updated_practices = [practice for practice in scheduled_practices if not (practice['Date'] == date and practice['Time'] == time and practice['Location'] == location)]
+    with open('scheduled_practices.csv', 'w', newline='') as csvfile:
+        fieldnames = ['Date', 'Time', 'Location']
+        writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+        writer.writeheader()
+        for practice in updated_practices:
+            writer.writerow(practice)
 
 @app.route('/')
 def index():
@@ -109,7 +117,20 @@ def view_schedule():
     scheduled_practices = get_scheduled_practices()  # Retrieve scheduled practices from CSV
     return render_template('view_schedule.html', scheduled_practices=scheduled_practices)
 
+@app.route('/delete_practice', methods=['POST'])
+def delete_practice():
+    if request.method == 'POST':
+        date = request.form.get('date')
+        time = request.form.get('time')
+        location = request.form.get('location')
+        delete_practice_from_csv(date, time, location)  # Delete practice from CSV
+        return redirect(url_for('coach_dashboard'))
+    return redirect(url_for('coach_dashboard'))  # Redirect in case of a GET request
 
+@app.route('/manage_schedule')
+def manage_schedule():
+    scheduled_practices = get_scheduled_practices(skip_header=True)  # Skip the header row
+    return render_template('manage_schedule.html', scheduled_practices=scheduled_practices)
 
 if __name__ == '__main__':
     app.run(debug=True)

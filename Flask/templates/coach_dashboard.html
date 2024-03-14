@@ -11,6 +11,7 @@
     <p>Here, you can schedule practice sessions and view attendance.</p>
     <a href="{{ url_for('schedule_practice') }}">Schedule Practice</a>
     <a href="{{ url_for('view_attendance') }}">View Attendance</a>
+    <a href="{{ url_for('manage_schedule') }}">Manage Schedule</a>
     <form action="{{ url_for('logout') }}" method="post">
         <button type="submit">Logout</button>
     </form>
