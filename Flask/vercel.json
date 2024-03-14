@@ -1,4 +1,10 @@
 {
+    "builds": [
+        {
+          "src": "Flask",
+          "use": "@vercel/python"
+        }
+      ],
     "routes": [
         { "handle": "filesystem" },
         {
