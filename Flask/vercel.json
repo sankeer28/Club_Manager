@@ -2,7 +2,6 @@
     "builds":[
         {
             "src":"Flask/main.py"
-            "use":"@vercel/python"
 
         }
 
