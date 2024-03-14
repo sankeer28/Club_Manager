@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for, session, jsonify
+from flask import Flask, render_template, request, redirect, url_for, session
 from club import Club, User
 import secrets
 import csv
@@ -76,8 +76,8 @@ def login():
             elif user.role == "Member":
                 return redirect(url_for('member_dashboard'))
         else:
-            return render_template('index.html', message="Invalid credentials. Please try again.")
-    return render_template('index.html')
+            return render_template('login.html', message="Invalid credentials. Please try again.")
+    return render_template('login.html')
 
 
 @app.route('/coach_dashboard')
@@ -104,6 +104,29 @@ def add_member():
 
 
 
+@app.route('/remove_member_page', methods=['GET', 'POST'])
+def remove_member_page():
+    if request.method == 'POST':
+        # Handle the form submission here
+        # This is where you'll process the removal of the member
+        # You can access the form data using request.form
+        return redirect(url_for('coach_dashboard'))  # or wherever you want to redirect after processing the form
+    else:
+        # Fetch members to display in the form
+        members = []
+        with open('users.csv', newline='') as csvfile:
+            reader = csv.DictReader(csvfile)
+            for row in reader:
+                if row['role'] == 'Member':
+                    members.append(row)
+        return render_template('remove_member.html', members=members)
+
+
+
+
+
+
+
 
 @app.route('/schedule_practice', methods=['GET', 'POST'])
 def schedule_practice():
@@ -118,52 +141,6 @@ def schedule_practice():
         return redirect(url_for('treasurer_dashboard'))
 
     return render_template('schedule_practice.html')
-
-@app.route('/remove_member')
-def remove_member():
-    return render_template('remove_member.html')
-
-@app.route('/api/remove_member', methods=['POST'])
-def api_remove_member():
-    if request.method == 'POST':
-        try:
-            data = request.json
-            username = data.get('username')
-            
-            # Check if the user exists in the club
-            user_to_remove = next((user for user in club.users if user.username == username), None)
-            if user_to_remove:
-                # Remove the user from the club
-                club.users.remove(user_to_remove)
-                
-                # Save the updated user list to CSV
-                club.save_users_to_csv()
-                
-                # Return success message
-                return jsonify({'message': 'Member removed successfully'}), 200
-            else:
-                # Return error message if user not found
-                return jsonify({'error': 'User not found'}), 404
-        except Exception as e:
-            # Return error message for other exceptions
-            return jsonify({'error': str(e)}), 500
-
-
-
-
-
-
-@app.route('/api/members')
-def get_members():
-    members = []
-    with open('users.csv', newline='') as csvfile:
-        reader = csv.DictReader(csvfile)
-        for row in reader:
-            if row['role'] == 'Member':
-                members.append({'username': row['username'], 'name': row['name']})
-    return jsonify(members)
-
-
 
 
 

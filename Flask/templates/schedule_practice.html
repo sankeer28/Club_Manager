@@ -16,6 +16,10 @@
         <input type="text" id="location" name="location">
         <button type="submit">Schedule Practice</button>
     </form>
-    <a href="{{ url_for('coach_dashboard') }}">Back to Coach Dashboard</a>
+    {% if session['role'] == 'Treasurer' %}
+        <a href="{{ url_for('treasurer_dashboard') }}">Back to Treasurer Dashboard</a>
+    {% elif session['role'] == 'Coach' %}
+        <a href="{{ url_for('coach_dashboard') }}">Back to Coach Dashboard</a>
+    {% endif %}
 </body>
 </html>

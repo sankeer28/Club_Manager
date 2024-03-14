@@ -60,3 +60,8 @@ my_club_app/
 ├── app.py
 ├── club.py
 └── scheduled_practices.csv
+
+coach can add and delete members
+member, coach and treasurer can register account and logout
+treasurer can schedule practice and delete practice
+member can view schedule practices
