@@ -1,25 +1,15 @@
 {
     "builds": [
-        {
-            "src": "Flask/main.py",
-            "use": "@vercel/python",
-            "config": {
-                "maxLambdaSize": "2048mb"
-            }
-        }
+      {
+        "src": "iteration_2_76/Flask/main.py",
+        "use": "@vercel/python"
+      }
     ],
     "routes": [
-        {
-            "src": "/static/(.*)",
-            "dest": "Flask/static/$1"
-        },
-        {
-            "src": "/templates/(.*)",
-            "dest": "Flask/templates/$1"
-        },
-        {
-            "src": "/(.*)",
-            "dest": "Flask/main.py"
-        }
+      {
+        "src": "/(.*)",
+        "dest": "iteration_2_76/Flask/main.py"
+      }
     ]
-}
+  }
+  
