@@ -1,0 +1,21 @@
+{
+    "builds":[
+        {
+            "src":"Flask/main.py"
+            "use":"@vercel/python"
+
+        }
+
+
+    ],
+    "routes":[
+        {
+            "src":"/(.*)",
+            "dest":"Flask/main.py"
+        }
+
+
+    ]
+
+
+}
