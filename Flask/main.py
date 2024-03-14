@@ -2,8 +2,9 @@ from flask import Flask, render_template, request, redirect, url_for, session, j
 from club import Club, User
 import secrets
 import csv
+import os
 
-app = Flask(__name__)
+app = Flask(__name__, static_url_path='/static')
 app.secret_key = secrets.token_hex(24)  # Set the secret key
 
 club = Club()
@@ -80,10 +81,29 @@ def login():
     return render_template('index.html')
 
 
+# Route for the email functionality
+@app.route('/email_members')
+def email_members():
+    return render_template('email.html')
+
 @app.route('/coach_dashboard')
 def coach_dashboard():
     return render_template('coach_dashboard.html')
 
+# Function to process CSV data and return members
+def process_csv():
+    members = []
+    csv_path = os.path.join(os.path.dirname(__file__), 'users.csv')
+    with open(csv_path, newline='') as csvfile:
+        reader = csv.DictReader(csvfile)
+        for row in reader:
+            if row['role'].lower() == 'member':
+                members.append({
+                    'name': row['name'],
+                    'email': row['email'],
+                    'phone': row['phone']
+                })
+    return members
 
 
 @app.route('/add_member', methods=['GET', 'POST'])
@@ -120,7 +140,6 @@ def add_coach():
         club.save_users_to_csv()
         return redirect(url_for('treasurer_dashboard'))
     return render_template('add_coach.html')
-
 
 
 @app.route('/schedule_practice', methods=['GET', 'POST'])
@@ -167,6 +186,10 @@ def api_remove_member():
             return jsonify({'error': str(e)}), 500
 
 
+
+
+
+
 @app.route('/remove_coach')
 def remove_coach():
     return render_template('remove_coach.html')
@@ -200,7 +223,6 @@ def api_remove_coach():
 
 
 
-
 @app.route('/api/members')
 def get_members():
     members = []
@@ -208,8 +230,14 @@ def get_members():
         reader = csv.DictReader(csvfile)
         for row in reader:
             if row['role'] == 'Member':
-                members.append({'username': row['username'], 'name': row['name']})
+                members.append({
+                    'username': row['username'],
+                    'name': row['name'],
+                    'email': row['email'],  # Include email
+                    'phone': row['phone']   # Include phone number
+                })
     return jsonify(members)
+
 
 @app.route('/api/coaches')
 def api_get_coaches():

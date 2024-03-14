@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Member List</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/email.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Member List</h1>
+        <table id="memberTable">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Select</th>
+                </tr>
+            </thead>
+            <tbody id="tableBody"></tbody>
+        </table>
+        <br>
+        <div>
+            <input type="text" id="emailSubject" placeholder="Enter email subject">
+            <br>
+            <textarea id="emailBody" rows="5" placeholder="Enter email body"></textarea>
+            <br>
+            <button onclick="sendEmail()">Send Email</button>
+            <button onclick="selectAllCheckboxes()">Select All</button>
+        </div>
+        <br>
+        <div class="selected-emails">
+            <label>Selected Emails:</label>
+            <input type="text" id="selectedEmailsInput" readonly>
+        </div>
+        <button onclick="goToCoachDashboard()">Back to Coach Dashboard</button> <!-- Button to go back to Coach Dashboard -->
+    </div>
+    <script>
+        function fetchMembers() {
+            fetch('/api/members')
+                .then(response => response.json())
+                .then(members => {
+                    const tableBody = document.getElementById('tableBody');
+                    tableBody.innerHTML = ''; // Clear existing table data
+                    members.forEach(member => {
+                        const row = document.createElement('tr');
+                        row.innerHTML = `
+                            <td>${member.name}</td>
+                            <td>${member.email}</td>
+                            <td>${member.phone}</td>
+                            <td><input type="checkbox" class="emailCheckbox" value="${member.email}" onclick="updateSelectedEmails()"></td>
+                        `;
+                        tableBody.appendChild(row);
+                    });
+                })
+                .catch(error => console.error('Error fetching members:', error));
+        }
+    
+        // Call fetchMembers() when the page loads
+        document.addEventListener('DOMContentLoaded', fetchMembers);
+    
+        function selectAllCheckboxes() {
+            const checkboxes = document.querySelectorAll('.emailCheckbox');
+            checkboxes.forEach(checkbox => {
+                checkbox.checked = true;
+            });
+            updateSelectedEmails();
+        }
+    
+        function updateSelectedEmails() {
+            const selectedEmails = document.querySelectorAll('.emailCheckbox:checked');
+            const selectedEmailsArray = Array.from(selectedEmails).map(checkbox => checkbox.value);
+            document.getElementById('selectedEmailsInput').value = selectedEmailsArray.join(', ');
+        }
+    
+        function sendEmail() {
+            const emailSubject = document.getElementById('emailSubject').value;
+            const emailBody = document.getElementById('emailBody').value;
+            const selectedEmails = document.querySelectorAll('.emailCheckbox:checked');
+            if (selectedEmails.length === 0) {
+                alert("Please select at least one recipient.");
+                return;
+            }
+            let toEmails = '';
+            selectedEmails.forEach((checkbox) => {
+                toEmails += checkbox.value + ',';
+            });
+            toEmails = toEmails.slice(0, -1);
+            const mailtoLink = `https://mail.google.com/mail/?view=cm&to=${toEmails}&su=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
+            window.open(mailtoLink, '_blank');
+        }
+    
+        function goToCoachDashboard() {
+            window.location.href = "{{ url_for('coach_dashboard') }}"; // Redirect to Coach Dashboard
+        }
+    </script>
+    
+    
+</body>
+</html>
