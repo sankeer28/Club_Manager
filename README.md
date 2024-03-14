@@ -37,3 +37,26 @@ This project focuses on managing a small amateur club where members gather for r
 5. Register or log in as a member, coach, or treasurer.
 6. Explore the available features based on your role.
 
+
+my_club_app/
+│
+├── static/
+│   ├── css/
+│   │   └── styles.css
+│   └── js/
+│       └── script.js
+│
+├── templates/
+│   ├── index.html
+│   ├── register.html
+│   ├── login.html
+│   ├── coach_dashboard.html
+│   ├── schedule_practice.html
+│   ├── view_attendance.html
+│   ├── treasurer_dashboard.html
+│   ├── member_dashboard.html
+│   └── view_schedule.html
+│
+├── app.py
+├── club.py
+└── scheduled_practices.csv

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Attendance</title>
+</head>
+<body>
+    <h1>Attendance</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Username</th>
+                <th>Attendance Count</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for username, count in attendance_data.items() %}
+            <tr>
+                <td>{{ username }}</td>
+                <td>{{ count }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
