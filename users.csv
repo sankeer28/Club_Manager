@@ -1,8 +1,4 @@
 username,password,role,email,phone,name,address,payment_preferences,payment_status,attendance_count,notification_preferences,payment_history
 co,co,Coach,asn@gmail.com,123,asdf,asdf,asdf,Unpaid,0,{},[]
 tr,tr,Treasurer,tr@asdfasd,234234,adfasdfh,dfg,sdfg,Unpaid,0,{},[]
-co,co,,,,,,,Unpaid,0,{},[]
-asdf,fasd,Member,ba@gmail.com,213,adsf,123,asdf,Unpaid,0,{},[]
-cho,fasd234,Member,adf@gmail.c,1234,bobby big,adfasdf,adsfasdf,Unpaid,0,{},[]
-cho,fasd234,Member,,,rororor,adsf,adf,Unpaid,0,{},[]
-asdf123,fasd123,Member,asdf@gmailom,123123,asdfasdf,avasdf,adsf,Unpaid,0,{},[]
+asdf,fasd,Member,asdfasdf@asdfasdf,123123,bob,asdfasdf12,sadf,Unpaid,0,{},[]

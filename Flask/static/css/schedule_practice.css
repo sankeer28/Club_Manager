@@ -1,0 +1,66 @@
+/* Optional CSS styling for the form */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f8f9; /* Light teal background color */
+}
+
+form {
+    max-width: 400px;
+    margin: 0 auto;
+    background-color: #ffffff; /* White container background */
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+input[type="text"],
+input[type="date"],
+input[type="time"] {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box; /* Ensure padding and border are included in width */
+}
+
+button[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    background-color: #1abc9c;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button[type="submit"]:hover {
+    background-color: #16a085;
+}
+
+a.button {
+    display: block;
+    width: 15%;
+    padding: 10px;
+    background-color: #3498db; /* Blue button color */
+    color: #fff;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 5px;
+    margin: 10px auto; /* Center horizontally with auto margin */
+}
+
+a.button:hover {
+    background-color: #2980b9; /* Darker blue hover color */
+}
+

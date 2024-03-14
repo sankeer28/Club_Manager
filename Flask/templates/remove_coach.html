@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Remove Coach</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/remove_coach.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Remove Coach</h1>
+        <table id="coaches-table">
+            <thead>
+                <tr>
+                    <th>Coach</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Coaches will be dynamically added here -->
+            </tbody>
+        </table>
+        <br>
+        <a href="{{ url_for('treasurer_dashboard') }}">Back to Treasurer Dashboard</a>
+    </div>
+
+    <script>
+        // Function to fetch and display coaches
+        async function fetchAndDisplayCoaches() {
+            try {
+                const response = await fetch('/api/coaches');
+                const coaches = await response.json();
+                const coachesTable = document.getElementById('coaches-table').getElementsByTagName('tbody')[0];
+                coachesTable.innerHTML = ''; // Clear previous table rows
+                coaches.forEach(coach => {
+                    const row = coachesTable.insertRow();
+                    const cell1 = row.insertCell(0);
+                    const cell2 = row.insertCell(1);
+                    cell1.textContent = coach.name;
+                    const removeButton = document.createElement('button');
+                    removeButton.textContent = 'Remove';
+                    removeButton.addEventListener('click', () => {
+                        removeCoach(coach.username); // Pass the username to the function
+                    });
+                    cell2.appendChild(removeButton);
+                });
+            } catch (error) {
+                console.error('Error fetching coaches:', error);
+            }
+        }
+    
+        // Function to remove a coach
+        async function removeCoach(username) {
+            try {
+                const response = await fetch('/api/remove_coach', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ username })
+                });
+                if (response.ok) {
+                    // Refresh the list of coaches after removal
+                    fetchAndDisplayCoaches();
+                } else {
+                    console.error('Failed to remove coach');
+                }
+            } catch (error) {
+                console.error('Error removing coach:', error);
+            }
+        }
+    
+        // Call the function to fetch and display coaches when the page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            fetchAndDisplayCoaches();
+        });
+    </script>
+    
+</body>
+</html>

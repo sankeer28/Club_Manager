@@ -42,26 +42,35 @@ my_club_app/
 │
 ├── static/
 │   ├── css/
-│   │   └── styles.css
+│   │   ├── styles.css
+│   │   ├──login.css
+│   │   ├──view_schedule.css
+│   │   └──register.css
 │   └── js/
 │       └── script.js
 │
 ├── templates/
+│   ├── add_coach.html
+│   ├── add_member.html
+│   ├── manage_schedule.html
+│   ├── remove_coach.html
+│   ├── remove_member.html
 │   ├── index.html
 │   ├── register.html
-│   ├── login.html
 │   ├── coach_dashboard.html
 │   ├── schedule_practice.html
-│   ├── view_attendance.html
+│   ├── view_attendance.html  need to do
 │   ├── treasurer_dashboard.html
 │   ├── member_dashboard.html
 │   └── view_schedule.html
 │
 ├── app.py
 ├── club.py
-└── scheduled_practices.csv
+├── scheduled_practices.csv
+└── users.csv
 
 coach can add and delete members
 member, coach and treasurer can register account and logout
 treasurer can schedule practice and delete practice
 member can view schedule practices
+treasurer can add new coach and delete coach

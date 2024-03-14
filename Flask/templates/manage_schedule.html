@@ -4,22 +4,39 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Manage Schedule</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/manage_schedule.css') }}">
 </head>
 <body>
-    <h1>Manage Schedule</h1>
-    <ul>
-        {% for practice in scheduled_practices %}
-            <li>Date: {{ practice['Date'] }}, Time: {{ practice['Time'] }}, Location: {{ practice['Location'] }}
-                <form action="{{ url_for('manage_schedule') }}" method="post" style="display: inline;">
-                    <input type="hidden" name="date" value="{{ practice['Date'] }}">
-                    <input type="hidden" name="time" value="{{ practice['Time'] }}">
-                    <input type="hidden" name="location" value="{{ practice['Location'] }}">
-                    <button type="submit" name="action" value="delete">Delete</button>
-                </form>
-            </li>
-        {% endfor %}
-    </ul>
-    <a href="{{ url_for('treasurer_dashboard') }}">Back to Treasurer Dashboard</a>
+    <div class="container">
+        <h1>Manage Schedule</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>Location</th>
+                    <th>Action</th> <!-- New column for delete buttons -->
+                </tr>
+            </thead>
+            <tbody>
+                {% for practice in scheduled_practices %}
+                <tr>
+                    <td>{{ practice['Date'] }}</td>
+                    <td>{{ practice['Time'] }}</td>
+                    <td>{{ practice['Location'] }}</td>
+                    <td>
+                        <form action="{{ url_for('manage_schedule') }}" method="post" style="display: inline;">
+                            <input type="hidden" name="date" value="{{ practice['Date'] }}">
+                            <input type="hidden" name="time" value="{{ practice['Time'] }}">
+                            <input type="hidden" name="location" value="{{ practice['Location'] }}">
+                            <button type="submit" name="action" value="delete">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <a href="{{ url_for('treasurer_dashboard') }}">Back to Treasurer Dashboard</a>
+    </div>
 </body>
 </html>

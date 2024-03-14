@@ -1,0 +1,65 @@
+/* manage_schedule.css */
+/* CSS for styling the table */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f8f9; /* Light teal background color */
+}
+
+.container {
+    width: 80%; /* Adjusted width for responsiveness */
+    margin: 100px auto;
+    background-color: #ffffff; /* White container background */
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th, td {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+button {
+    width: 100px; /* Adjusted width for the button */
+    padding: 8px;
+    background-color: #e74c3c; /* Red button color */
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #c0392b; /* Darker red hover color */
+}
+
+a {
+    display: block;
+    width: 200px; /* Adjusted width for the button */
+    margin: 20px auto 0;
+    padding: 10px;
+    text-align: center;
+    background-color: #1abc9c; /* Teal button color */
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+a:hover {
+    background-color: #16a085; /* Darker teal hover color */
+}

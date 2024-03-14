@@ -4,16 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Remove Member</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/remove_member.css') }}">
 </head>
 <body>
-    <h1>Remove Member</h1>
-    <p>Select a member to remove:</p>
-    <ul id="members-list">
-        <!-- Members will be dynamically added here -->
-    </ul>
-    <br>
-    <a href="{{ url_for('coach_dashboard') }}">Back to Coach Dashboard</a>
+    <div class="container">
+        <h1>Remove Member</h1>
+        <table id="members-table">
+            <thead>
+                <tr>
+                    <th>Member</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Members will be dynamically added here -->
+            </tbody>
+        </table>
+        <br>
+        <a href="{{ url_for('coach_dashboard') }}">Back to Coach Dashboard</a>
+    </div>
 
     <script>
         // Function to fetch and display members
@@ -21,19 +30,19 @@
             try {
                 const response = await fetch('/api/members');
                 const members = await response.json();
-                const membersList = document.getElementById('members-list');
-                membersList.innerHTML = ''; // Clear previous list
+                const membersTable = document.getElementById('members-table').getElementsByTagName('tbody')[0];
+                membersTable.innerHTML = ''; // Clear previous table rows
                 members.forEach(member => {
-                    const listItem = document.createElement('li');
-                    listItem.textContent = member.name;
-                    // Add a button to remove the member
+                    const row = membersTable.insertRow();
+                    const cell1 = row.insertCell(0);
+                    const cell2 = row.insertCell(1);
+                    cell1.textContent = member.name;
                     const removeButton = document.createElement('button');
                     removeButton.textContent = 'Remove';
                     removeButton.addEventListener('click', () => {
                         removeMember(member.username);
                     });
-                    listItem.appendChild(removeButton);
-                    membersList.appendChild(listItem);
+                    cell2.appendChild(removeButton);
                 });
             } catch (error) {
                 console.error('Error fetching members:', error);

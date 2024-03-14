@@ -84,6 +84,8 @@ def login():
 def coach_dashboard():
     return render_template('coach_dashboard.html')
 
+
+
 @app.route('/add_member', methods=['GET', 'POST'])
 def add_member():
     if request.method == 'POST':
@@ -102,6 +104,22 @@ def add_member():
     return render_template('add_member.html')
 
 
+@app.route('/add_coach', methods=['GET', 'POST'])
+def add_coach():
+    if request.method == 'POST':
+        username = request.form['username']
+        password = request.form['password']
+        role = 'Coach'  # Set role as "Coach" by default
+        email = request.form['email']
+        phone = request.form['phone']
+        name = request.form.get('name')
+        address = request.form.get('address')
+        payment_preferences = request.form.get('payment_preferences')
+        new_coach = User(username, password, role, email, phone, name, address, payment_preferences)
+        club.users.append(new_coach)
+        club.save_users_to_csv()
+        return redirect(url_for('treasurer_dashboard'))
+    return render_template('add_coach.html')
 
 
 
@@ -149,6 +167,36 @@ def api_remove_member():
             return jsonify({'error': str(e)}), 500
 
 
+@app.route('/remove_coach')
+def remove_coach():
+    return render_template('remove_coach.html')
+
+@app.route('/api/remove_coach', methods=['POST'])
+def api_remove_coach():
+    if request.method == 'POST':
+        try:
+            data = request.json
+            username = data.get('username')
+            
+            # Check if the coach exists in the club's coaches list
+            coach_to_remove = next((coach for coach in club.users if coach.username == username and coach.role == 'Coach'), None)
+            if coach_to_remove:
+                # Remove the coach from the club's coaches list
+                club.users.remove(coach_to_remove)
+                
+                # Save the updated coaches list to CSV or database
+                club.save_users_to_csv()  # or club.save_coaches_to_db() depending on your implementation
+                
+                # Return success message
+                return jsonify({'message': 'Coach removed successfully'}), 200
+            else:
+                # Return error message if coach not found
+                return jsonify({'error': 'Coach not found'}), 404
+        except Exception as e:
+            # Return error message for other exceptions
+            return jsonify({'error': str(e)}), 500
+
+
 
 
 
@@ -162,6 +210,12 @@ def get_members():
             if row['role'] == 'Member':
                 members.append({'username': row['username'], 'name': row['name']})
     return jsonify(members)
+
+@app.route('/api/coaches')
+def api_get_coaches():
+    coaches_data = [{'username': coach.username, 'name': coach.name} for coach in club.users if coach.role == 'Coach']
+    return jsonify(coaches_data)
+
 
 
 

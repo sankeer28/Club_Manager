@@ -9,12 +9,13 @@
 <body>
     <h1>Welcome to Treasurer Dashboard</h1>
     <p>Here, you can manage coach lists, schedules, and track club finances.</p>
-    <a href="#">Manage Coach List</a>
+    <a href="{{ url_for('add_coach') }}">Add Coach</a>
     <a href="{{ url_for('manage_schedule') }}">Manage Schedule</a>
     <a href="#">Track Club Finances</a>
     <a href="#">Log Unpaid Debt</a>
     <a href="#">Current Month's Account Payables</a>
     <a href="{{ url_for('schedule_practice') }}">Schedule Practice</a>
+    <a href="{{ url_for('remove_coach') }}">Remove Coach</a>
     <form action="{{ url_for('logout') }}" method="post">
         <button type="submit">Logout</button>
     </form>

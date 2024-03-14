@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add Member</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/add_member.css') }}">
+    <title>Add Coach</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/add_coach.css') }}">
 </head>
 <body>
     <div class="container">
-        <h1>Add New Member</h1>
-        <form action="{{ url_for('add_member') }}" method="POST">
+        <h1>Add New Coach</h1>
+        <form action="{{ url_for('add_coach') }}" method="POST">
             <label for="username">Username:</label>
             <input type="text" id="username" name="username"><br>
             <label for="password">Password:</label>
@@ -24,10 +24,10 @@
             <input type="text" id="address" name="address"><br>
             <label for="payment_preferences">Payment Preferences:</label>
             <input type="text" id="payment_preferences" name="payment_preferences"><br>
-            <input type="hidden" id="role" name="role" value="Member"> <!-- Hidden input for role with value "Member" -->
-            <button type="submit">Add Member</button>
+            <input type="hidden" id="role" name="role" value="Coach"> <!-- Hidden input for role with value "Coach" -->
+            <button type="submit">Add Coach</button>
         </form>
-        <button onclick="window.location.href='{{ url_for('coach_dashboard') }}'" class="cancel-button">Cancel</button>
+        <a href="{{ url_for('treasurer_dashboard') }}" class="cancel-button">Cancel</a>
     </div>
 </body>
 </html>

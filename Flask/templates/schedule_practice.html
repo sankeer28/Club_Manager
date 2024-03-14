@@ -4,22 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Schedule Practice</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/schedule_practice.css') }}">
 </head>
 <body>
     <h1>Schedule Practice</h1>
     <form method="POST" action="{{ url_for('schedule_practice') }}">
         <label for="date">Date:</label>
-        <input type="text" id="date" name="date">
+        <input type="date" id="date" name="date" required>
         <label for="time">Time:</label>
-        <input type="text" id="time" name="time">
+        <input type="time" id="time" name="time" required>
         <label for="location">Location:</label>
-        <input type="text" id="location" name="location">
+        <input type="text" id="location" name="location" required>
         <button type="submit">Schedule Practice</button>
     </form>
     {% if session['role'] == 'Treasurer' %}
-        <a href="{{ url_for('treasurer_dashboard') }}">Back to Treasurer Dashboard</a>
+        <a href="{{ url_for('treasurer_dashboard') }}" class="button">Back to Treasurer Dashboard</a>
     {% elif session['role'] == 'Coach' %}
-        <a href="{{ url_for('coach_dashboard') }}">Back to Coach Dashboard</a>
+        <a href="{{ url_for('coach_dashboard') }}" class="button">Back to Coach Dashboard</a>
     {% endif %}
 </body>
 </html>
