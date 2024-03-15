@@ -24,7 +24,7 @@ This project focuses on managing a small amateur club where members gather for r
 1. Clone the repository to your local machine.
 ```
  git clone https://github.com/sankeer28/Club_Manager.git
- cd Club_Manager
+ cd Club_Manager-main
 ```
 2. Install the necessary dependencies. 
 ```
