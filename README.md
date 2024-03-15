@@ -18,7 +18,7 @@ This project focuses on managing a small amateur club where members gather for r
 - **Track Finances:** The treasurer can view the club's income statement, including revenue and expenses. ❌
 - **Debt Tracking:** Outstanding debts from previous months are logged, allowing the treasurer to prioritize payments. ❌
 - **Payment Reminders:** Reminders are sent to members with outstanding payments. ❌
-### Try out the ([Live Demo](https://sankeer28.pythonanywhere.com/))
+### Try out the [Live Demo](https://sankeer28.pythonanywhere.com/)
 ## Usage Instructions
 
 1. Clone the repository to your local machine.
