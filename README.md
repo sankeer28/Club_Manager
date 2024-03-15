@@ -28,15 +28,23 @@ This project focuses on managing a small amateur club where members gather for r
 ## Usage Instructions
 
 1. Clone the repository to your local machine.
+```
+ git clone https://github.com/sankeer28/Club_Manager.git
+ cd Club_Manager
+```
 2. Install the necessary dependencies. 
 ```
  pip install Flask
 ```
 4. Open Flask folder
+```
+ cd Flask
+```
 3. Run the application 
 ```
  flask run
 ```
+4. You will get a message like ``` * Running on http://127.0.0.1:5000 ``` ctrl + click on it or copy paste into browser
 5. Register or log in as a member, coach, or treasurer.
 6. Explore the available features based on your role.
 

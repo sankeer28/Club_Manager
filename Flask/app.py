@@ -11,7 +11,13 @@ club = Club()
 club.load_users_from_csv() 
 
 
+
 def save_practice_to_csv(date, time, location):
+    if not os.path.exists('scheduled_practices.csv'):
+        with open('scheduled_practices.csv', 'w', newline='') as csvfile:
+            fieldnames = ['Date', 'Time', 'Location']
+            writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+            writer.writeheader()
     with open('scheduled_practices.csv', 'a', newline='') as csvfile:
         fieldnames = ['Date', 'Time', 'Location']
         writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
@@ -39,6 +45,7 @@ def delete_practice_from_csv(date, time, location):
         writer.writeheader()
         for practice in updated_practices:
             writer.writerow(practice)
+
 
 @app.route('/')
 def index():
