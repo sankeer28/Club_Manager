@@ -1,6 +1,6 @@
 # MEM: Recreation Club Membership
 
-This project focuses on managing a small amateur club where members gather for regular practices, led by an amateur coach. The club meets weekly, and members are free to attend as they wish. However, they are required to pay for each practice session, either individually or in advance for a month. The treasurer handles the club's finances, including collecting payments, paying the coach, and covering monthly expenses like rent.
+This project focuses on managing a small amateur club where members gather for regular practices, led by an amateur coach. The club meets weekly, and members can attend as they wish. However, they are required to pay for each practice session, either individually or in advance for a month. The treasurer handles the club's finances, including collecting payments, paying the coach, and covering monthly expenses like rent.
 
 ## Key Features
 
@@ -12,7 +12,7 @@ This project focuses on managing a small amateur club where members gather for r
 ### 2. Practice Management
 - **Scheduling:** Coaches can schedule practice sessions, specifying the date, time, and location. ✅
 - **Practice Attendance:** The system tracks member attendance to sessions. ❌
-- **Payment for Practices:** Members can schedule and pay for practice sessions through the app. ❌
+- **Payment for Practices:** The app allows Members to schedule and pay for practice sessions. ❌
 
 ### 3. Financial Management
 - **Track Finances:** The treasurer can view the club's income statement, including revenue and expenses. ❌
@@ -26,11 +26,11 @@ This project focuses on managing a small amateur club where members gather for r
  git clone https://github.com/sankeer28/Club_Manager.git
  cd Club_Manager
 ```
-2. Install the necessary dependencies. 
+2. Install the necessary dependencies. Was tested on Python 3.11.6, Should work on modern Python versions
 ```
  pip install Flask
 ```
-4. Open Flask folder
+4. Open the Flask folder
 ```
  cd Flask
 ```
@@ -38,18 +38,18 @@ This project focuses on managing a small amateur club where members gather for r
 ```
  flask run
 ```
-4. You will get a message like ``` * Running on http://127.0.0.1:5000 ``` ctrl + click on it or copy paste into browser
+4. You will get a message like ``` * Running on http://127.0.0.1:5000 ``` ctrl + click on it or copy-paste into browser
 5. Register or log in as a member, coach, or treasurer.
 6. Explore the available features based on your role.
 
 
 - coach can add and delete members
-- member, coach and treasurer can register account and logout
-- treasurer can schedule practice and delete practice
+- member, coach and treasurer can register accounts and logout
+- The treasurer can schedule practice and delete practice
 - member can view scheduled practices
-- treasurer can add new coach and delete coach
-- when coach or member is removed they can get an optional email telling them they have been removed from the club
+- The treasurer can add a new coach and delete a coach
+- when a coach or member is removed they can get an optional email telling them they have been removed from the club
 - Dashboard for coach and member has a greeting with their name 
 
 
-- set schedule uses OpenStreetMap and Nominatim API to turn coordinates from clicking on map to named location
+- set schedule uses OpenStreetMap and Nominatim API to turn coordinates from clicking on the map to a named location
