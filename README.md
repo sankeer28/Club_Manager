@@ -19,12 +19,6 @@ This project focuses on managing a small amateur club where members gather for r
 - **Debt Tracking:** Outstanding debts from previous months are logged, allowing the treasurer to prioritize payments. ❌
 - **Payment Reminders:** Reminders are sent to members with outstanding payments. ❌
 
-## Limitations and Future Improvements
-
-- **Payment Method Integration:** Currently, payment processing is not integrated into the application. Integrating a payment gateway would enhance user experience.
-- **Automated Notifications:** Implementing automated notifications for practice reminders and payment alerts would reduce manual effort.
-- **Enhanced Reporting:** Adding detailed reports on member attendance, revenue trends, and expense breakdowns would provide deeper insights for decision-making.
-
 ## Usage Instructions
 
 1. Clone the repository to your local machine.
@@ -52,7 +46,7 @@ This project focuses on managing a small amateur club where members gather for r
 - coach can add and delete members
 - member, coach and treasurer can register account and logout
 - treasurer can schedule practice and delete practice
-- member can view schedule practices
+- member can view scheduled practices
 - treasurer can add new coach and delete coach
 - when coach or member is removed they can get an optional email telling them they have been removed from the club
 - Dashboard for coach and member has a greeting with their name 
