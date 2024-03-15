@@ -47,6 +47,7 @@ This project focuses on managing a small amateur club where members gather for r
 - member can view schedule practices
 - treasurer can add new coach and delete coach
 - when coach or member is removed they can get an optional email telling them they have been removed from the club
+- Dashboard for coach and member has a greeting with their name 
 
 
-- set schedule  uses OpenStreetMap  and Nominatim API to turn coordinates from clicking on map to named location
+- set schedule uses OpenStreetMap and Nominatim API to turn coordinates from clicking on map to named location
