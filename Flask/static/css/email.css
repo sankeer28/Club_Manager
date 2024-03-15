@@ -117,3 +117,38 @@ button {
 button:hover {
     opacity: 0.8; 
 }
+
+.emailCheckbox {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 24px;
+    -webkit-appearance: none;
+    appearance: none;
+    outline: none;
+    border: none;
+    background-color: #ddd;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.emailCheckbox::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s;
+}
+
+.emailCheckbox:checked {
+    background-color: #2cb97c;
+}
+.emailCheckbox:checked::after {
+    transform: translateX(26px);
+}

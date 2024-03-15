@@ -3,18 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Coach Dashboard</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <title>Welcome, {{ coach_name }} - Coach Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
 </head>
 <body>
-    <h1>Welcome to Coach Dashboard</h1>
-    <p>Here, you can schedule practice sessions, view attendance, add members, and remove members.</p>
-    <a href="{{ url_for('view_attendance') }}">View Attendance</a><br>
-    <a href="{{ url_for('add_member') }}">Add Member</a><br>
-    <a href="{{ url_for('remove_member') }}" class="btn btn-primary">Remove Member</a><br>
-    <a href="{{ url_for('email_members') }}" class="btn btn-primary">Email Members</a><br> 
-    <form action="{{ url_for('logout') }}" method="post">
-        <button type="submit">Logout</button>
-    </form>
+    <div class="container">
+        <h1>Welcome to Coach Dashboard, {{ coach_name }}</h1>
+        <p>Here, you can schedule practice sessions, view attendance, add members, and remove members.</p>
+        <div class="dashboard-links">
+            <a href="{{ url_for('view_attendance') }}">View Attendance</a>
+            <a href="{{ url_for('add_member') }}">Add Member</a>
+            <a href="{{ url_for('remove_member') }}">Remove Member</a>
+            <a href="{{ url_for('email_members') }}">Email Members</a>
+        </div>
+        <form action="{{ url_for('logout') }}" method="post">
+            <button type="submit">Logout</button>
+        </form>
+    </div>
 </body>
 </html>

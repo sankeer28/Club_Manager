@@ -3,14 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Member Dashboard</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <title>Welcome, {{ user_name }} - Member Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
 </head>
 <body>
-    <h1>Welcome to Member Dashboard</h1>
-    <p>Here, you can view scheduled practices and pay for sessions.</p>
-    <a href="{{ url_for('view_schedule') }}">View Scheduled Practices</a>
-    <a href="#">Schedule and Pay for Practice</a>
-    <a href="{{ url_for('logout') }}">Logout</a>
+    <div class="container">
+        <h1>Welcome to Member Dashboard, {{ user_name }}</h1>
+        <p>Here, you can view scheduled practices and pay for sessions.</p>
+        <div class="dashboard-links">
+            <a href="{{ url_for('view_schedule') }}">View Scheduled Practices</a>
+            <a href="#">Schedule and Pay for Practice</a>
+            <a href="{{ url_for('logout') }}">Logout</a>
+        </div>
+    </div>
 </body>
 </html>

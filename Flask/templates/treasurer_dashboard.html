@@ -3,21 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Treasurer Dashboard</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <title>Welcome to Treasurer Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
 </head>
 <body>
-    <h1>Welcome to Treasurer Dashboard</h1>
-    <p>Here, you can manage coach lists, schedules, and track club finances.</p>
-    <a href="{{ url_for('add_coach') }}">Add Coach</a>
-    <a href="{{ url_for('manage_schedule') }}">Manage Schedule</a>
-    <a href="#">Track Club Finances</a>
-    <a href="#">Log Unpaid Debt</a>
-    <a href="#">Current Month's Account Payables</a>
-    <a href="{{ url_for('schedule_practice') }}">Schedule Practice</a>
-    <a href="{{ url_for('remove_coach') }}">Remove Coach</a>
-    <form action="{{ url_for('logout') }}" method="post">
-        <button type="submit">Logout</button>
-    </form>
+    <div class="container">
+        <h1>Welcome to Treasurer Dashboard</h1>
+        <p>Here, you can manage coach lists, schedules, and track club finances.</p>
+        <div class="dashboard-links">
+            <a href="{{ url_for('add_coach') }}">Add Coach</a>
+            <a href="{{ url_for('manage_schedule') }}">Manage Schedule</a>
+            <a href="#">Track Club Finances</a>
+            <a href="#">Log Unpaid Debt</a>
+            <a href="#">Current Month's Account Payables</a>
+            <a href="{{ url_for('schedule_practice') }}">Schedule Practice</a>
+            <a href="{{ url_for('remove_coach') }}">Remove Coach</a>
+        </div>
+        <form action="{{ url_for('logout') }}" method="post">
+            <button type="submit">Logout</button>
+        </form>
+    </div>
 </body>
 </html>

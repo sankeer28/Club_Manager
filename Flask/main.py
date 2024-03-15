@@ -10,7 +10,7 @@ app.secret_key = secrets.token_hex(24)
 club = Club()
 club.load_users_from_csv() 
 
-# Function to save scheduled practice to CSV file
+
 def save_practice_to_csv(date, time, location):
     with open('scheduled_practices.csv', 'a', newline='') as csvfile:
         fieldnames = ['Date', 'Time', 'Location']
@@ -29,7 +29,7 @@ def get_scheduled_practices(skip_header=True):
                 scheduled_practices.append(practice)
     return scheduled_practices
 
-# Function to delete a scheduled practice from CSV file
+
 def delete_practice_from_csv(date, time, location):
     scheduled_practices = get_scheduled_practices()
     updated_practices = [practice for practice in scheduled_practices if not (practice['Date'] == date and practice['Time'] == time and practice['Location'] == location)]
@@ -81,16 +81,25 @@ def login():
     return render_template('index.html')
 
 
-# Route for the email functionality
+
 @app.route('/email_members')
 def email_members():
     return render_template('email.html')
 
 @app.route('/coach_dashboard')
 def coach_dashboard():
-    return render_template('coach_dashboard.html')
 
-# Function to process CSV data and return members
+    with open('users.csv', newline='') as csvfile:
+        reader = csv.DictReader(csvfile)
+        for row in reader:
+            if row['username'] == session['username']:
+                coach_name = row['name']
+                break
+
+    return render_template('coach_dashboard.html', coach_name=coach_name)
+
+
+
 def process_csv():
     members = []
     csv_path = os.path.join(os.path.dirname(__file__), 'users.csv')
@@ -248,9 +257,20 @@ def view_attendance():
 def treasurer_dashboard():
     return render_template('treasurer_dashboard.html')
 
+
 @app.route('/member_dashboard')
 def member_dashboard():
-    return render_template('member_dashboard.html')
+
+    with open('users.csv', newline='') as csvfile:
+        reader = csv.DictReader(csvfile)
+        for row in reader:
+            if row['username'] == session['username']:
+                user_name = row['name']
+                break
+
+    return render_template('member_dashboard.html', user_name=user_name)
+
+
 
 @app.route('/logout', methods=['GET', 'POST'])
 def logout():
@@ -286,4 +306,4 @@ def manage_schedule():
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=False)
