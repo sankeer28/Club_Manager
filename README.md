@@ -1,4 +1,4 @@
-# MEM: Recreation Club Membership
+# Recreation Club Membership Application
 
 This project focuses on managing a small amateur club where members gather for regular practices, led by an amateur coach. The club meets weekly, and members can attend as they wish. However, they are required to pay for each practice session, either individually or in advance for a month. The treasurer handles the club's finances, including collecting payments, paying the coach, and covering monthly expenses like rent.
 
