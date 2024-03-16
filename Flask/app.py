@@ -232,6 +232,24 @@ def read_users_from_csv():
             })
     return users
 
+@app.route('/members')
+def view_members():
+    members = []
+    with open('users.csv', newline='') as csvfile:
+        reader = csv.DictReader(csvfile)
+        for row in reader:
+            if row['role'] == 'Member':
+                members.append({
+                    'username': row['username'],
+                    'name': row['name'],
+                    'email': row['email'],
+                    'phone': row['phone'],
+                    'address': row['address'],
+                    'payment_status': row['payment_status'],
+                    'attendance_count': row['attendance_count'],
+                    'payment_history': row['payment_history']
+                })
+    return render_template('members.html', members=members)
 
 
 @app.route('/api/members')

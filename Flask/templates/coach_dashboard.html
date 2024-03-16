@@ -15,6 +15,8 @@
             <a href="{{ url_for('add_member') }}">Add Member</a>
             <a href="{{ url_for('remove_member') }}">Remove Member</a>
             <a href="{{ url_for('email_members') }}">Email Members</a>
+            <a href="{{ url_for('view_members') }}">View Members</a>
+
         </div>
         <form action="{{ url_for('logout') }}" method="post">
             <button type="submit">Logout</button>

@@ -1,7 +1,7 @@
 username,password,role,email,phone,name,address,payment_preferences,payment_status,attendance_count,notification_preferences,payment_history
-tr,tr,Treasurer,tr@asdfasd,234234,adfasdfh,dfg,sdfg,Unpaid,0,{},[]
-23rr2,23r,Member,af@asdfafd.com,dfgh,bob,sdf234,adf,Unpaid,0,{},[]
-23rr2dfgh,23rdfgh,Member,dgfhdfgh@sdfg.com,asdf23,kiuyt,dfsg,t3,Unpaid,0,{},[]
-co,co,Coach,asdf@asdf.com,123123,max,1231,123,Unpaid,0,{},[]
-popo,opopo,Member,asdf@asdf.com,56786578,django,asdf234sgdf,asdf,Unpaid,0,{},[]
+tr,tr,Treasurer,tr@asdfasd,234234,adfasdfh,dfg,sdfg,Unpaid,2,{},[]
+23rr2,23r,Member,af@asdfafd.com,dfgh,bob,sdf234,adf,Paid,1,{},[]
+23rr2dfgh,23rdfgh,Member,dgfhdfgh@sdfg.com,asdf23,kiuyt,dfsg,t3,Unpaid,2,{},[]
+co,co,Coach,asdf@asdf.com,123123,max,1231,123,Unpaid,3,{},[]
+popo,opopo,Member,asdf@asdf.com,56786578,django,asdf234sgdf,asdf,Paid,3,{},[]
 123,123,Member,sdfg@asdf,435345,dsfgdsfg,sdfgsdgf,sdfgdgfs,Unpaid,0,{},[]
