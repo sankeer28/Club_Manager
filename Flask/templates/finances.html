@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Club Finances</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/finances.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Club Finances</h1>
+        <p>Total Revenue: ${{ total_revenue }}</p>
+        <p>Total Coach Expenses ($5 per session): ${{ total_coach_expenses }}</p>
+        <p>Total Hall Expenses ($2 per session): ${{ total_hall_expenses }}</p>
+        <p>Current Profit: ${{ current_profit }}</p>
+
+        <h2>Members' Financial Summary</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Attendance Count</th>
+                    <th>Total Paid ($)</th>
+                    <th>Amount Owed ($)</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for student in students %}
+                <tr>
+                    <td>{{ student.name }}</td>
+                    <td>{{ student.attendance_count }}</td>
+                    <td>{{ student.total_paid }}</td>
+                    <td>{{ student.amount_owed }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <div class="dashboard-links">
+            <a href="{{ url_for('treasurer_dashboard') }}">Back to Treasurer Dashboard</a>
+            <form action="{{ url_for('download_info') }}" method="post">
+                <button type="submit">Download Member Financial Summary</button>
+            </form>
+            
+        </div>
+    </div>
+</body>
+</html>

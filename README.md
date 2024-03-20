@@ -15,9 +15,9 @@ This project focuses on managing a small amateur club where members gather for r
 - **Payment for Practices:** The app allows Members to schedule and pay for practice sessions. ✅
 
 ### 3. Financial Management
-- **Track Finances:** The treasurer can view the club's income statement, including revenue and expenses. ❌
-- **Debt Tracking:** Outstanding debts from previous months are logged, allowing the treasurer to prioritize payments. ❌
-- **Payment Reminders:** Reminders are sent to members with outstanding payments. ❌
+- **Track Finances:** The treasurer can view the club's income statement, including revenue and expenses. ✅
+- **Debt Tracking:** Outstanding debts from previous months are logged, allowing the treasurer to prioritize payments. ✅
+- **Payment Reminders:** Reminders can be sent to members with outstanding payments. ✅
 ### Try out the [Live Demo](https://sankeer28.pythonanywhere.com/) ‼️‼️‼️‼️NOTE: update website before we submit
 ## Usage Instructions
 
@@ -57,4 +57,4 @@ This project focuses on managing a small amateur club where members gather for r
 - members can now pay the amount they owe based on attendance
 - treasurer and coach can see a table with members and sort based on if they paid or not and attendance
 - in the list of members, if they have unpaid, coach or treasurer can send them email reminding them
-
+- Treasurer can see total revenue, coach expenses, hall expenses, and profit can also see how much each member paid and how much they owe

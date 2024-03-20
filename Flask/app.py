@@ -1,9 +1,10 @@
-from flask import Flask, render_template, request, redirect, url_for, session, jsonify
+from flask import Flask, render_template, request, redirect, url_for, session, jsonify, Response
 from club import Club, User
 import secrets
 import csv
 import os
 import ast
+
 
 app = Flask(__name__, static_url_path='/static')
 app.secret_key = secrets.token_hex(24) 
@@ -473,20 +474,95 @@ def treasurer_dashboard():
     member_scheduled_practices = [practice for practice in scheduled_practices if 'User' in practice and practice['User'] != 'tr']
     return render_template('treasurer_dashboard.html', scheduled_practices=member_scheduled_practices)
 
+@app.route('/download_info',methods=['GET', 'POST']) 
+def download_info():
+    students = []
+    with open('users.csv', newline='') as csvfile:
+        reader = csv.DictReader(csvfile)
+        for row in reader:
+            if row['role'] == 'Member':
+                attendance_count = int(row['attendance_count'])
+                payment_history = eval(row['payment_history']) if row['payment_history'] else []
+                total_paid = sum(payment_history)
+                amount_owed = max(attendance_count * 10 - total_paid, 0)
+                students.append({
+                    'name': row['name'],
+                    'attendance_count': attendance_count,
+                    'total_paid': total_paid,
+                    'amount_owed': amount_owed,
+                })
 
+    csv_data = "Name,Attendance Count,Total Paid ($),Amount Owed ($)\n"
+    for student in students:
+        csv_data += f"{student['name']},{student['attendance_count']},{student['total_paid']},{student['amount_owed']}\n"
+    return Response(
+        csv_data,
+        mimetype="text/csv",
+        headers={"Content-disposition": "attachment; filename=financial_information.csv"}
+    )
+
+
+
+
+@app.route('/finances')
+def club_finances():
+    students = []
+    total_revenue = 0
+    total_coach_expenses = 0
+    total_hall_expenses = 0
+    unpaid_coach_expenses = 0
+    unpaid_hall_expenses = 0
+
+    with open('users.csv', newline='') as csvfile:
+        reader = csv.DictReader(csvfile)
+        highest_attendance = 0
+        for row in reader:
+            if row['role'] == 'Member':
+                attendance_count = int(row['attendance_count'])
+                if attendance_count > highest_attendance:
+                    highest_attendance = attendance_count
+
+                payment_history = eval(row['payment_history']) if row['payment_history'] else []
+                total_paid = sum(payment_history)
+                payment_status = "Paid" if attendance_count * 10 <= total_paid else "Unpaid"
+                
+                total_due = attendance_count * 10
+                amount_owed = max(total_due - total_paid, 0)
+
+                students.append({
+                    'name': row['name'],
+                    'attendance_count': attendance_count,
+                    'total_paid': total_paid,
+                    'amount_owed': amount_owed,
+                })
+
+                total_revenue += total_paid
+    total_coach_expenses = highest_attendance * 5
+    total_hall_expenses = highest_attendance * 2
+    current_profit = total_revenue - total_coach_expenses - total_hall_expenses
+    unpaid_coach_expenses = max(total_coach_expenses - total_revenue, 0)
+    unpaid_hall_expenses = max(total_hall_expenses - total_revenue, 0)
+    return render_template('finances.html', students=students, total_revenue=total_revenue, total_coach_expenses=total_coach_expenses, total_hall_expenses=total_hall_expenses, current_profit=current_profit, unpaid_coach_expenses=unpaid_coach_expenses, unpaid_hall_expenses=unpaid_hall_expenses)
 
 
 @app.route('/member_dashboard')
 def member_dashboard():
-
+    username = session.get('username')
     with open('users.csv', newline='') as csvfile:
         reader = csv.DictReader(csvfile)
         for row in reader:
-            if row['username'] == session['username']:
+            if row['username'] == username:
                 user_name = row['name']
-                break
+                attendance_count = int(row['attendance_count'])
+                payment_history_str = row['payment_history']
+                payment_history = eval(payment_history_str) if payment_history_str else []  
+                total_due = attendance_count * 10
+                total_paid = sum(payment_history)
+                amount_owed = max(total_due - total_paid, 0)
 
-    return render_template('member_dashboard.html', user_name=user_name)
+                return render_template('member_dashboard.html', user_name=user_name, amount_owed=amount_owed)
+
+    return render_template('error.html', message="User not found")
 
 @app.route('/amount_owed')
 def amount_owed():

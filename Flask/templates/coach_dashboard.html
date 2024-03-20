@@ -27,14 +27,13 @@
         </div>
         
         
-        
 
         <div class="dashboard-links">
             <a href="{{ url_for('view_attendance') }}">View Attendance</a>
             <a href="{{ url_for('add_member') }}">Add Member</a>
             <a href="{{ url_for('remove_member') }}">Remove Member</a>
             <a href="{{ url_for('email_members') }}">Email Members</a>
-            <a href="{{ url_for('view_members') }}">View Members</a>
+            <a href="{{ url_for('view_members') }}">View Members / Payment Status / Attendance</a>
         </div>
 
         <form action="{{ url_for('logout') }}" method="post">

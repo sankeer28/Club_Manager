@@ -1,0 +1,101 @@
+.page-background {
+    background-color: #f0f8f9;
+}
+
+.page-container {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+.button-container {
+    margin-bottom: 20px;
+}
+
+.button-container button {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+}
+
+.button-container button:hover {
+    background-color: #45a049;
+}
+
+.back-to-treasurer-button {
+    margin-top: 15px;
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.back-to-treasurer-button:hover {
+    background-color: #0056b3;
+}
+
+.attendance-buttons button {
+    padding: 5px 10px;
+    font-size: 14px;
+    cursor: pointer;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 3px;
+}
+
+.attendance-buttons button:hover {
+    background-color: #0056b3;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+    background-color: white;
+    border-radius: 5px;
+}
+
+th, td {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+th {
+    cursor: pointer;
+}
+
+th:hover {
+    background-color: #f2f2f2;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f8f9;
+}
+
+
+@media screen and (max-width: 600px) {
+    .page-container {
+        width: 90%;
+        padding: 15px;
+    }
+}

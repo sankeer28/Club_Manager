@@ -4,93 +4,59 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Members</title>
-    <style>
-        table {
-            border-collapse: collapse;
-            width: 100%;
-        }
-        th, td {
-            border: 1px solid #dddddd;
-            text-align: left;
-            padding: 8px;
-        }
-        th {
-            cursor: pointer;
-        }
-        .button {
-            display: inline-block;
-            padding: 10px 20px;
-            background-color: #4CAF50;
-            color: white;
-            text-align: center;
-            text-decoration: none;
-            font-size: 16px;
-            margin: 4px 2px;
-            cursor: pointer;
-        }
-        .attendance-buttons {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .attendance-buttons button {
-            padding: 5px 10px;
-            font-size: 14px;
-            cursor: pointer;
-        }
-    </style>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/members.css') }}">
+
 </head>
-<body>
-    <h1>Members</h1>
-    <div>
-        <button onclick="sortTableByAttendance('asc')">Sort by Highest Attendance First</button>
-        <button onclick="sortTableByAttendance('desc')">Sort by Lowest Attendance First</button>
-        <button onclick="sortTableByPayment('asc')">Sort by Paid First</button>
-        <button onclick="sortTableByPayment('desc')">Sort by Unpaid First</button>
-    </div>
-    <table id="membersTable">
-        <thead>
-            <tr>
-
-                <th>Name</th>
-                <th>Email</th>
-                <th>Phone</th>
-                <th>Address</th>
-                <th>Payment Status - press to send reminder</th>
-                <th>Attendance Count</th>
-                <th>Take Attendance</th> 
-            </tr>
-        </thead>
-        <tbody>
-            {% for member in members %}
-            <tr>
-                <td>{{ member.name }}</td>
-                <td>{{ member.email }}</td>
-                <td>{{ member.phone }}</td>
-                <td>{{ member.address }}</td>
-                <td>
-                    {% if member.attendance_count * 10 <= member.total_paid %}
-                        Paid
-                    {% else %}
-                        <a href="#" onclick="sendReminder('{{ member.email }}')">Unpaid</a>
-                    {% endif %}
-                </td>
-                
-                <td>{{ member.attendance_count }}</td>
-                <td class="attendance-buttons">
-                    <button onclick="increaseAttendance('{{ member.username }}')">+</button>
-                    <button onclick="decreaseAttendance('{{ member.username }}')">-</button>
-                </td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-
-    {% if session['role'] == 'Treasurer' %}
-    <a href="{{ url_for('treasurer_dashboard') }}" class="button">Back to Treasurer Dashboard</a>
-    {% elif session['role'] == 'Coach' %}
-    <a href="{{ url_for('coach_dashboard') }}" class="button">Back to Coach Dashboard</a>
-    {% endif %}
+<body class="page-background">
+    <div class="page-container">
+        <h1>Members' Payment Status and Attendance</h1>
+        <div class="button-container">
+            <button onclick="sortTableByAttendance('asc')">Sort by Highest Attendance First</button>
+            <button onclick="sortTableByAttendance('desc')">Sort by Lowest Attendance First</button>
+            <button onclick="sortTableByPayment('asc')">Sort by Paid First</button>
+            <button onclick="sortTableByPayment('desc')">Sort by Unpaid First</button>
+        </div>
+        <table id="membersTable">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Address</th>
+                    <th>Payment Status - press to send reminder</th>
+                    <th>Attendance Count</th>
+                    <th>Take Attendance</th> 
+                </tr>
+            </thead>
+            <tbody>
+                {% for member in members %}
+                <tr>
+                    <td>{{ member.name }}</td>
+                    <td>{{ member.email }}</td>
+                    <td>{{ member.phone }}</td>
+                    <td>{{ member.address }}</td>
+                    <td>
+                        {% if member.attendance_count * 10 <= member.total_paid %}
+                            Paid
+                        {% else %}
+                            <a href="#" onclick="sendReminder('{{ member.email }}')">Unpaid</a>
+                        {% endif %}
+                    </td>
+                    <td>{{ member.attendance_count }}</td>
+                    <td class="attendance-buttons">
+                        <button onclick="increaseAttendance('{{ member.username }}')">+</button>
+                        <button onclick="decreaseAttendance('{{ member.username }}')">-</button>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% if session['role'] == 'Treasurer' %}
+        <a href="{{ url_for('treasurer_dashboard') }}" class="back-to-treasurer-button">Back to Treasurer Dashboard</a>
+        {% elif session['role'] == 'Coach' %}
+        <a href="{{ url_for('coach_dashboard') }}" class="button">Back to Coach Dashboard</a>
+        {% endif %}
+        
 
     <script>
         function sortTableByAttendance(order) {

@@ -77,7 +77,7 @@ class Club:
                     'payment_status': user.payment_status,
                     'attendance_count': user.attendance_count,
                     'notification_preferences': user.notification_preferences,
-                    'payment_history': json.dumps(user.payment_history)  # Convert list to JSON string
+                    'payment_history': json.dumps(user.payment_history)  
                 })
 
 

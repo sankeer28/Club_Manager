@@ -6,84 +6,11 @@
     <title>Schedule Practice</title>
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
     <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/schedule_practice.css') }}"> 
     <style>
-        /* CSS styles from the provided snippet */
         #map {
             height: 300px; /* Set the height of the map container */
             margin-bottom: 10px; /* Add some space below the map */
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-        th, td {
-            border: 1px solid #ddd;
-            padding: 8px;
-            text-align: left;
-        }
-        th {
-            background-color: #f2f2f2;
-        }
-        /* Additional CSS styles from the second snippet */
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f2f2f2;
-        }
-        h1 {
-            text-align: center;
-            color: #333;
-        }
-        form {
-            max-width: 600px;
-            margin: 0 auto;
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-        label {
-            font-weight: bold;
-        }
-        input[type="date"],
-        input[type="time"],
-        input[type="text"],
-        button {
-            width: 100%;
-            padding: 10px;
-            margin: 5px 0 15px 0;
-            box-sizing: border-box;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            font-size: 16px;
-        }
-        button {
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            cursor: pointer;
-        }
-        button:hover {
-            background-color: #45a049;
-        }
-        .button {
-            background-color: #f44336;
-            color: white;
-            border: none;
-            cursor: pointer;
-            text-align: center;
-            text-decoration: none;
-            display: inline-block;
-            font-size: 16px;
-            margin: 4px 2px;
-            transition-duration: 0.4s;
-            border-radius: 4px;
-            padding: 10px 24px;
-        }
-        .button:hover {
-            background-color: #f44336;
-            color: white;
         }
     </style>
 </head>
@@ -101,7 +28,6 @@
         <a href="{{ url_for('member_dashboard') }}" class="button">Back to Member Dashboard</a>
     </form>
     
-    <!-- Map Script -->
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
     <script>
