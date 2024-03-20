@@ -41,6 +41,7 @@ This project focuses on managing a small amateur club where members gather for r
 4. You will get a message like ``` * Running on http://127.0.0.1:5000 ``` ctrl + click on it or copy-paste into browser
 5. Register or log in as a member, coach, or treasurer.
 6. Explore the available features based on your role.
+- If this does not work for you, download as [ZIP](https://github.com/sankeer28/Club_Manager/archive/refs/heads/main.zip), Unzip, open the main folder, then open the 'Flask' folder in VSCode or Pycharm and click run on app.py, also move users.csv and scheduled_practices.csv outside the Flask folder into the main folder
 
 
 ### Working Features:
