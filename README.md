@@ -11,8 +11,8 @@ This project focuses on managing a small amateur club where members gather for r
 
 ### 2. Practice Management
 - **Scheduling:** Coaches can schedule practice sessions, specifying the date, time, and location. ✅
-- **Practice Attendance:** The system tracks member attendance to sessions. ❌
-- **Payment for Practices:** The app allows Members to schedule and pay for practice sessions. ❌
+- **Practice Attendance:** The system allows coaches to take member's attendance to sessions. ✅
+- **Payment for Practices:** The app allows Members to schedule and pay for practice sessions. ✅
 
 ### 3. Financial Management
 - **Track Finances:** The treasurer can view the club's income statement, including revenue and expenses. ❌
@@ -56,5 +56,6 @@ This project focuses on managing a small amateur club where members gather for r
 - coach and treasurer dashboard has a container at the top of their dashboard saying which members scheduled a practice (in-app notification)
 - members can now pay the amount they owe based on attendance
 - treasurer and coach can see a table with members and sort based on if they paid and attendance
-
+### Need to do:
+- implement financial features
 
