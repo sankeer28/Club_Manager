@@ -1,6 +1,6 @@
 username,password,role,email,phone,name,address,payment_preferences,payment_status,attendance_count,notification_preferences,payment_history
 tr,tr,Treasurer,tr@asdfasd,234234,adfasdfh,dfg,sdfg,Unpaid,0,{},[]
 123,123,Member,af@asdfafd.com,dfgh,bob,sdf234,adf,Unpaid,10,{},"[30,2,3,2,2,22,19,10,10,1]"
-44,44,Member,dfsg@asdf.com,asdf,asdf,asdf,asdf,Unpaid,2,{},"[10, 10]"
+44,44,Member,dfsg@asdf.com,asdf,asdf,asdf,asdf,Unpaid,3,{},"[10, 10]"
 co,co,Coach,sdfg@adsf,hjkg,iii,gjk,jh,Unpaid,0,{},[]
 888,888,Member,dfgh@asdf.com,fghj,uu,ghj,fghj,0,2,{},[10]
