@@ -5,7 +5,7 @@ This project focuses on managing a small amateur club where members gather for r
 ## Key Features
 
 ### 1. User Management
-- **Registration:** New members can register an account with their details.✅
+- **Registration:** New members can register an account with their detai✅
 - **Login:** Members, coaches, and the treasurer can log in with their credentials.✅
 - **Role-based Access:** Each user has specific privileges based on their role. ✅
 
