@@ -55,6 +55,6 @@ This project focuses on managing a small amateur club where members gather for r
 - when member or treasurer schedules practice it saves to csv that says who scheduled the practice
 - coach and treasurer dashboard has a container at the top of their dashboard saying which members scheduled a practice (in-app notification)
 - members can now pay the amount they owe based on attendance
-- treasurer and coach can see a table with members and sort based on if they paid and attendance
-
+- treasurer and coach can see a table with members and sort based on if they paid or not and attendance
+- in the list of members, if they have unpaid, coach or treasurer can send them email reminding them
 
