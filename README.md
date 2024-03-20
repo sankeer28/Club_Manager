@@ -20,7 +20,7 @@ This project focuses on managing a small amateur club where members gather for r
 - **Payment Reminders:** Reminders can be sent to members with outstanding payments. ✅
 ### Try out the [Live Demo](https://sankeer28.pythonanywhere.com/)
 ## Usage Instructions
-
+- You are expected to have a relatively new version of Python installed
 1. Clone the repository to your local machine.
 ```
  git clone https://github.com/sankeer28/Club_Manager.git
