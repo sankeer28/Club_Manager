@@ -43,18 +43,20 @@
 <body>
     <h1>Members</h1>
     <div>
-        <button onclick="sortTable(6)">Sort by Attendance Count</button>
-        <button onclick="sortTable(5)">Sort by Payment Status</button>
+        <button onclick="sortTableByAttendance('asc')">Sort by Lowest Attendance First</button>
+        <button onclick="sortTableByAttendance('desc')">Sort by Highest Attendance First</button>
+        <button onclick="sortTableByPayment('asc')">Sort by Paid First</button>
+        <button onclick="sortTableByPayment('desc')">Sort by Unpaid First</button>
     </div>
     <table id="membersTable">
         <thead>
             <tr>
-                <th>Username</th>
+
                 <th>Name</th>
                 <th>Email</th>
                 <th>Phone</th>
                 <th>Address</th>
-                <th>Payment Status</th>
+                <th>Payment Status - press to send reminder</th>
                 <th>Attendance Count</th>
                 <th>Take Attendance</th> 
             </tr>
@@ -62,7 +64,6 @@
         <tbody>
             {% for member in members %}
             <tr>
-                <td>{{ member.username }}</td>
                 <td>{{ member.name }}</td>
                 <td>{{ member.email }}</td>
                 <td>{{ member.phone }}</td>
@@ -71,9 +72,10 @@
                     {% if member.attendance_count * 10 <= member.total_paid %}
                         Paid
                     {% else %}
-                        Unpaid
+                        <a href="#" onclick="sendReminder('{{ member.email }}')">Unpaid</a>
                     {% endif %}
                 </td>
+                
                 <td>{{ member.attendance_count }}</td>
                 <td class="attendance-buttons">
                     <button onclick="increaseAttendance('{{ member.username }}')">+</button>
@@ -91,36 +93,49 @@
     {% endif %}
 
     <script>
-        function sortTable(columnIndex) {
+        function sortTableByAttendance(order) {
+            var columnIndex = 6; // Attendance Count column
+            sortTable(columnIndex, order);
+        }
+    
+        function sortTableByPayment(order) {
+            var columnIndex = 5; // Payment Status column
+            sortTable(columnIndex, order);
+        }
+    
+        function sortTable(columnIndex, order) {
             var table, rows, switching, i, x, y, shouldSwitch;
             table = document.getElementById("membersTable");
             switching = true;
+    
             while (switching) {
                 switching = false;
                 rows = table.rows;
+    
                 for (i = 1; i < (rows.length - 1); i++) {
                     shouldSwitch = false;
                     x = rows[i].getElementsByTagName("td")[columnIndex];
                     y = rows[i + 1].getElementsByTagName("td")[columnIndex];
-                    if (isNaN(x.innerHTML)) {
+    
+                    if (order === 'asc') {
                         if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
                             shouldSwitch = true;
                             break;
                         }
-                    } else {
-                        if (parseInt(x.innerHTML) < parseInt(y.innerHTML)) {
+                    } else if (order === 'desc') {
+                        if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
                             shouldSwitch = true;
                             break;
                         }
                     }
                 }
+    
                 if (shouldSwitch) {
                     rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
                     switching = true;
                 }
             }
         }
-
         function increaseAttendance(username) {
             fetch(`/increase_attendance/${username}`, {
                 method: 'POST',
@@ -153,6 +168,15 @@
             }).catch(error => {
                 console.error('Error:', error);
             });
+        }
+        function sendReminder(email) {
+            const toEmails = email;
+            const emailSubject = "Payment Reminder";
+            const emailBody = "Dear member,\n\nThis is a reminder that you are behind on payments. Please make the necessary arrangements to settle your dues.\n\nRegards,\nThe Management";
+    
+            const url = `https://mail.google.com/mail/?view=cm&to=${toEmails}&su=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
+    
+            window.open(url, '_blank');
         }
     </script>
 </body>
