@@ -3,6 +3,7 @@ from club import Club, User
 import secrets
 import csv
 import os
+import ast
 
 app = Flask(__name__, static_url_path='/static')
 app.secret_key = secrets.token_hex(24) 
@@ -12,16 +13,17 @@ club.load_users_from_csv()
 
 
 
-def save_practice_to_csv(date, time, location):
+def save_practice_to_csv(date, time, location, username):
     if not os.path.exists('scheduled_practices.csv'):
         with open('scheduled_practices.csv', 'w', newline='') as csvfile:
-            fieldnames = ['Date', 'Time', 'Location']
+            fieldnames = ['Date', 'Time', 'Location', 'Username']
             writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
             writer.writeheader()
     with open('scheduled_practices.csv', 'a', newline='') as csvfile:
-        fieldnames = ['Date', 'Time', 'Location']
+        fieldnames = ['Date', 'Time', 'Location', 'Username']
         writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
-        writer.writerow({'Date': date, 'Time': time, 'Location': location})
+        writer.writerow({'Date': date, 'Time': time, 'Location': location, 'Username': username})
+
 
 def get_scheduled_practices(skip_header=True):
     scheduled_practices = []
@@ -30,21 +32,33 @@ def get_scheduled_practices(skip_header=True):
         if skip_header:
             next(reader)  
         for row in reader:
-            if len(row) >= 3:
-                practice = {'Date': row[0], 'Time': row[1], 'Location': row[2]}
+            if len(row) >= 4:  
+                practice = {'Date': row[0], 'Time': row[1], 'Location': row[2], 'User': row[3]}
                 scheduled_practices.append(practice)
     return scheduled_practices
 
 
-def delete_practice_from_csv(date, time, location):
-    scheduled_practices = get_scheduled_practices()
-    updated_practices = [practice for practice in scheduled_practices if not (practice['Date'] == date and practice['Time'] == time and practice['Location'] == location)]
+
+@app.route('/manage_schedule', methods=['POST'])
+def delete_practice_from_csv():
+    date = request.form.get('date')
+    time = request.form.get('time')
+    location = request.form.get('location')
+
+    with open('scheduled_practices.csv', 'r', newline='') as csvfile:
+        reader = csv.DictReader(csvfile)
+        fieldnames = reader.fieldnames
+        practices = list(reader)
+
+    updated_practices = [practice for practice in practices if practice['Date'] != date 
+                         or practice['Time'] != time or practice['Location'] != location]
+
     with open('scheduled_practices.csv', 'w', newline='') as csvfile:
-        fieldnames = ['Date', 'Time', 'Location']
         writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
         writer.writeheader()
-        for practice in updated_practices:
-            writer.writerow(practice)
+        writer.writerows(updated_practices)
+
+    return redirect(url_for('treasurer_dashboard'))
 
 
 @app.route('/')
@@ -93,9 +107,10 @@ def login():
 def email_members():
     return render_template('email.html')
 
+
 @app.route('/coach_dashboard')
 def coach_dashboard():
-
+    coach_name = None
     with open('users.csv', newline='') as csvfile:
         reader = csv.DictReader(csvfile)
         for row in reader:
@@ -103,7 +118,12 @@ def coach_dashboard():
                 coach_name = row['name']
                 break
 
-    return render_template('coach_dashboard.html', coach_name=coach_name)
+    scheduled_practices = get_scheduled_practices(skip_header=True)
+
+    member_scheduled_practices = [practice for practice in scheduled_practices if 'User' in practice and practice['User'] != 'tr']
+
+    return render_template('coach_dashboard.html', coach_name=coach_name, scheduled_practices=member_scheduled_practices)
+
 
 
 
@@ -133,11 +153,19 @@ def add_member():
         name = request.form.get('name')
         address = request.form.get('address')
         payment_preferences = request.form.get('payment_preferences')
-        new_member = User(username, password, role, email, phone, name, address, payment_preferences)
+
+        payment_history = 0
+
+        new_member = User(username, password, role, email, phone, name, address, payment_preferences, payment_history)
+
         club.users.append(new_member)
+
         club.save_users_to_csv()
+
         return redirect(url_for('coach_dashboard'))
+
     return render_template('add_member.html')
+
 
 
 @app.route('/add_coach', methods=['GET', 'POST'])
@@ -157,9 +185,8 @@ def add_coach():
         return redirect(url_for('treasurer_dashboard'))
     return render_template('add_coach.html')
 
-
-@app.route('/schedule_practice', methods=['GET', 'POST'])
-def schedule_practice():
+@app.route('/member_schedule_practice', methods=['GET', 'POST'])
+def member_schedule_practice():
     if 'username' not in session:
         return redirect(url_for('login'))
 
@@ -167,7 +194,28 @@ def schedule_practice():
         date = request.form.get('date')
         time = request.form.get('time')
         location = request.form.get('location')
-        save_practice_to_csv(date, time, location)  
+
+        member_name = None
+        for user in club.users:
+            if user.username == session['username']:
+                member_name = user.name
+                break
+        
+        save_practice_to_csv(date, time, location, member_name)  
+        return render_template('member_schedule_pay.html')
+    
+    return render_template('member_schedule_pay.html')
+
+
+
+@app.route('/schedule_practice', methods=['GET', 'POST'])
+def schedule_practice():
+    if request.method == 'POST':
+        date = request.form.get('date')
+        time = request.form.get('time')
+        location = request.form.get('location')
+        username = session.get('username', 'Treasurer')  
+        save_practice_to_csv(date, time, location, username)  
         return redirect(url_for('treasurer_dashboard'))
 
     return render_template('schedule_practice.html')
@@ -231,9 +279,153 @@ def read_users_from_csv():
                 'role': row['role']
             })
     return users
-
 @app.route('/members')
 def view_members():
+    username = session.get('username')
+
+
+    members = []
+    with open('users.csv', newline='') as csvfile:
+        reader = csv.DictReader(csvfile)
+        for row in reader:
+            if row['role'] == 'Member':
+                attendance_count = int(row['attendance_count'])
+                payment_history = row['payment_history'].strip('[]').split(',')
+                valid_payment_history = [amount.strip() for amount in payment_history if amount.strip()]
+                total_paid = sum(map(float, valid_payment_history)) if valid_payment_history else 0
+                payment_status = "Paid" if attendance_count * 10 <= total_paid else "Unpaid"
+
+
+                members.append({
+                    'username': row['username'],
+                    'name': row['name'],
+                    'email': row['email'],
+                    'phone': row['phone'],
+                    'address': row['address'],
+                    'payment_status': payment_status,
+                    'attendance_count': attendance_count,
+                    'total_paid': total_paid
+                })
+
+    return render_template('members.html', members=members)
+
+
+
+def update_csv(username, new_attendance_count):
+    with open('users.csv', 'r', newline='') as file:
+        reader = csv.DictReader(file)
+        rows = list(reader)
+
+    for row in rows:
+        if row['username'] == username:
+            row['attendance_count'] = str(new_attendance_count)
+            break
+
+    with open('users.csv', 'w', newline='') as file:
+        writer = csv.DictWriter(file, fieldnames=reader.fieldnames)
+        writer.writeheader()
+        writer.writerows(rows)
+        
+        
+@app.route('/increase_attendance/<username>', methods=['POST'])
+def increase_attendance(username):
+    try:
+
+        with open('users.csv', 'r', newline='') as file:
+            reader = csv.DictReader(file)
+            for row in reader:
+                if row['username'] == username:
+                    current_attendance_count = int(row['attendance_count'])
+                    break
+        new_attendance_count = current_attendance_count + 1
+        update_csv(username, new_attendance_count)
+        return jsonify({'message': 'Attendance increased successfully'})
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
+@app.route('/decrease_attendance/<username>', methods=['POST'])
+def decrease_attendance(username):
+    try:
+
+        with open('users.csv', 'r', newline='') as file:
+            reader = csv.DictReader(file)
+            for row in reader:
+                if row['username'] == username:
+                    current_attendance_count = int(row['attendance_count'])
+                    break
+
+        if current_attendance_count > 0:
+            new_attendance_count = current_attendance_count - 1
+            update_csv(username, new_attendance_count)
+            return jsonify({'message': 'Attendance decreased successfully'})
+        else:
+            return jsonify({'error': 'Attendance count cannot be negative'}), 400
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
+def calculate_amount_owed(attendance_count, payment_history):
+    if payment_history == 0:
+        return attendance_count * 10 
+    else:
+        total_paid = sum(int(amount) for amount in payment_history.split(','))  
+        amount_owed = attendance_count * 10 - total_paid
+        return max(0, amount_owed)
+
+
+
+def update_payment_history(username, amount):
+    with open('users.csv', 'r', newline='') as csvfile:
+        reader = csv.DictReader(csvfile)
+        rows = list(reader)
+
+    for row in rows:
+        if row['username'] == username:
+            payment_history_str = row.get('payment_history', '')  
+            if payment_history_str:
+                payment_history_list = ast.literal_eval(payment_history_str)
+            else:
+                payment_history_list = []
+            payment_history_list.append(amount)
+
+            payment_history_str = "[" + ",".join(map(str, payment_history_list)) + "]"
+
+            row['payment_history'] = payment_history_str 
+            break
+
+    with open('users.csv', 'w', newline='') as csvfile:
+        fieldnames = rows[0].keys()
+        writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+        writer.writeheader()
+        writer.writerows(rows)
+
+
+
+
+
+@app.route('/member_schedule_pay', methods=['GET', 'POST'])
+def member_schedule_pay():
+    if 'username' not in session:
+        return redirect(url_for('login'))
+
+    attendance_count = 0  
+    payment_history = '0'  
+
+    if request.method == 'POST':
+        date = request.form.get('date')
+        time = request.form.get('time')
+        location = request.form.get('location')
+        amount = request.form.get('amount')
+        update_payment_history(session['username'], amount)
+
+        return redirect(url_for('member_dashboard'))
+
+    amount_owed = calculate_amount_owed(attendance_count, payment_history)
+
+    return render_template('member_schedule_pay.html', amount_owed=amount_owed, payment_history=payment_history)
+
+
+@app.route('/api/other_members', methods=['GET'])
+def get_other_members():
     members = []
     with open('users.csv', newline='') as csvfile:
         reader = csv.DictReader(csvfile)
@@ -243,13 +435,10 @@ def view_members():
                     'username': row['username'],
                     'name': row['name'],
                     'email': row['email'],
-                    'phone': row['phone'],
-                    'address': row['address'],
-                    'payment_status': row['payment_status'],
-                    'attendance_count': row['attendance_count'],
-                    'payment_history': row['payment_history']
+                    'phone': row['phone'],   
                 })
-    return render_template('members.html', members=members)
+    return jsonify(members)
+
 
 
 @app.route('/api/members')
@@ -280,7 +469,11 @@ def view_attendance():
 
 @app.route('/treasurer_dashboard')
 def treasurer_dashboard():
-    return render_template('treasurer_dashboard.html')
+    scheduled_practices = get_scheduled_practices(skip_header=True)
+    member_scheduled_practices = [practice for practice in scheduled_practices if 'User' in practice and practice['User'] != 'tr']
+    return render_template('treasurer_dashboard.html', scheduled_practices=member_scheduled_practices)
+
+
 
 
 @app.route('/member_dashboard')
@@ -294,6 +487,45 @@ def member_dashboard():
                 break
 
     return render_template('member_dashboard.html', user_name=user_name)
+
+@app.route('/amount_owed')
+def amount_owed():
+    username = session.get('username')
+
+    with open('users.csv', newline='') as csvfile:
+        reader = csv.DictReader(csvfile)
+        for row in reader:
+            if row['username'] == username:
+
+                attendance_count = int(row['attendance_count'])
+                payment_history_str = row['payment_history']
+                payment_history = eval(payment_history_str) if payment_history_str else []  
+                total_due = attendance_count * 10
+                total_paid = sum(payment_history)
+                amount_owed = max(total_due - total_paid, 0)
+
+                return render_template('amount_owed.html', user_name=username, amount_owed=amount_owed)
+
+    return render_template('error.html', message="Error calculating amount owed")
+
+
+
+
+
+
+@app.route('/pay')
+def pay():
+    username = session.get('username')
+    with open('users.csv', newline='') as csvfile:
+        reader = csv.DictReader(csvfile)
+        for row in reader:
+            if row['username'] == username:
+                attendance_count = int(row['attendance_count'])
+                payment_history = row['payment_history'].strip('[]').split(',')
+                valid_payment_history = [amount.strip() for amount in payment_history if amount.strip()]
+                paid_amount = sum(map(float, valid_payment_history)) if valid_payment_history else 0
+                amount_owed = max(attendance_count * 10 - paid_amount, 0)
+                return render_template('pay.html', user_name=username, amount_owed=amount_owed)
 
 
 

@@ -28,6 +28,16 @@
             margin: 4px 2px;
             cursor: pointer;
         }
+        .attendance-buttons {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .attendance-buttons button {
+            padding: 5px 10px;
+            font-size: 14px;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
@@ -46,6 +56,7 @@
                 <th>Address</th>
                 <th>Payment Status</th>
                 <th>Attendance Count</th>
+                <th>Take Attendance</th> 
             </tr>
         </thead>
         <tbody>
@@ -56,8 +67,18 @@
                 <td>{{ member.email }}</td>
                 <td>{{ member.phone }}</td>
                 <td>{{ member.address }}</td>
-                <td>{{ member.payment_status }}</td>
+                <td>
+                    {% if member.attendance_count * 10 <= member.total_paid %}
+                        Paid
+                    {% else %}
+                        Unpaid
+                    {% endif %}
+                </td>
                 <td>{{ member.attendance_count }}</td>
+                <td class="attendance-buttons">
+                    <button onclick="increaseAttendance('{{ member.username }}')">+</button>
+                    <button onclick="decreaseAttendance('{{ member.username }}')">-</button>
+                </td>
             </tr>
             {% endfor %}
         </tbody>
@@ -98,6 +119,40 @@
                     switching = true;
                 }
             }
+        }
+
+        function increaseAttendance(username) {
+            fetch(`/increase_attendance/${username}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            }).then(response => {
+                if (response.ok) {
+                    window.location.reload(); 
+                } else {
+                    console.error('Failed to increase attendance');
+                }
+            }).catch(error => {
+                console.error('Error:', error);
+            });
+        }
+    
+        function decreaseAttendance(username) {
+            fetch(`/decrease_attendance/${username}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            }).then(response => {
+                if (response.ok) {
+                    window.location.reload(); 
+                } else {
+                    console.error('Failed to decrease attendance');
+                }
+            }).catch(error => {
+                console.error('Error:', error);
+            });
         }
     </script>
 </body>

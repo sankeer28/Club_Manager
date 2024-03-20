@@ -64,3 +64,54 @@ form button:hover {
 body {
     background-color: #e6f7ff; 
 }
+
+.scheduled-practices-container {
+    max-height: 200px;
+    overflow-y: auto;
+    margin-bottom: 20px;
+    background-color: #e6f7ff;
+    border: 1px solid #007bff;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.scheduled-practices-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.scheduled-practices-list li {
+    margin-bottom: 20px;
+}
+
+.member-name {
+    color: #11073d;
+    font-weight: bold; 
+
+}
+
+.practice-date {
+    color: #359596;
+    font-weight: bold; 
+}
+
+.practice-time {
+    color: #1a561a; 
+    font-weight: bold; 
+}
+
+.practice-location {
+    color: #991717; 
+    font-weight: bold; 
+    white-space: nowrap; 
+    overflow: hidden; 
+    text-overflow: ellipsis; 
+    max-width: 250px; 
+}
+
+
+/* Add line separator */
+.scheduled-practices-list li:not(:last-child) {
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 10px; 
+}

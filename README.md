@@ -44,6 +44,7 @@ This project focuses on managing a small amateur club where members gather for r
 
 
 ### Working Features:
+- set schedule uses OpenStreetMap and Nominatim API to turn coordinates from clicking on the map to a named location
 - coach can add and delete members
 - member, coach and treasurer can register accounts and logout
 - The treasurer can schedule practice and delete practice
@@ -51,6 +52,9 @@ This project focuses on managing a small amateur club where members gather for r
 - The treasurer can add a new coach and delete a coach
 - when a coach or member is removed they can get an optional email telling them they have been removed from the club
 - Dashboard for coach and member has a greeting with their name 
+- when member or treasurer schedules practice it saves to csv that says who scheduled the practice
+- coach and treasurer dashboard has a container at the top of their dashboard saying which members scheduled a practice (in-app notification)
+- members can now pay the amount they owe based on attendance
+- treasurer and coach can see a table with members and sort based on if they paid and attendance
 
 
-- set schedule uses OpenStreetMap and Nominatim API to turn coordinates from clicking on the map to a named location

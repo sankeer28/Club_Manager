@@ -1,5 +1,9 @@
 import csv
 from datetime import datetime
+import ast
+import json
+import csv
+import json
 
 class User:
     def __init__(self, username, password, role, email, phone, name=None, address=None, payment_preferences=None, payment_status="Unpaid", attendance_count=0, notification_preferences=None, payment_history=None):
@@ -22,6 +26,7 @@ class User:
     def receive_notification(self, message):
         print("Received notification:", message)
 
+
 class Club:
     SESSION_FEE = 10
 
@@ -40,7 +45,14 @@ class Club:
             with open('users.csv', mode='r', newline='') as file:
                 reader = csv.DictReader(file)
                 for row in reader:
-                    user = User(row['username'], row['password'], row['role'], row['email'], row['phone'], row.get('name'), row.get('address'), row.get('payment_preferences'), row.get('payment_status'), int(row.get('attendance_count', 0)), eval(row.get('notification_preferences', '{}')), eval(row.get('payment_history', '[]')))
+                    payment_history_str = row.get('payment_history', '[]')
+                    payment_history = json.loads(payment_history_str)
+                    user = User(
+                        row['username'], row['password'], row['role'], row['email'], row['phone'],
+                        row.get('name'), row.get('address'), row.get('payment_preferences'),
+                        row.get('payment_status'), int(row.get('attendance_count', 0)),
+                        eval(row.get('notification_preferences', '{}')), payment_history
+                    )
                     self.users.append(user)
                     if row['role'] == 'Coach':
                         self.coaches.append({'name': row['username'], 'contact_info': row['email']})
@@ -65,8 +77,9 @@ class Club:
                     'payment_status': user.payment_status,
                     'attendance_count': user.attendance_count,
                     'notification_preferences': user.notification_preferences,
-                    'payment_history': user.payment_history
+                    'payment_history': json.dumps(user.payment_history)  # Convert list to JSON string
                 })
+
 
     def schedule_practice(self, coach, date, time, location):
         self.practice_schedule.setdefault(coach, []).append({'date': date, 'time': time, 'location': location})
