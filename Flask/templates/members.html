@@ -54,18 +54,18 @@
         {% if session['role'] == 'Treasurer' %}
         <a href="{{ url_for('treasurer_dashboard') }}" class="back-to-treasurer-button">Back to Treasurer Dashboard</a>
         {% elif session['role'] == 'Coach' %}
-        <a href="{{ url_for('coach_dashboard') }}" class="button">Back to Coach Dashboard</a>
+        <a href="{{ url_for('coach_dashboard') }}" class="back-to-treasurer-button">Back to Coach Dashboard</a>
         {% endif %}
         
 
     <script>
         function sortTableByAttendance(order) {
-            var columnIndex = 6; // Attendance Count column
+            var columnIndex = 6; 
             sortTable(columnIndex, order);
         }
     
         function sortTableByPayment(order) {
-            var columnIndex = 5; // Payment Status column
+            var columnIndex = 5; 
             sortTable(columnIndex, order);
         }
     
