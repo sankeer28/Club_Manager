@@ -11,10 +11,10 @@
     <div class="page-container">
         <h1>Members' Payment Status and Attendance</h1>
         <div class="button-container">
-            <button onclick="sortTableByAttendance('asc')">Sort by Highest Attendance First</button>
-            <button onclick="sortTableByAttendance('desc')">Sort by Lowest Attendance First</button>
-            <button onclick="sortTableByPayment('asc')">Sort by Paid First</button>
-            <button onclick="sortTableByPayment('desc')">Sort by Unpaid First</button>
+            <button onclick="sortTableByAttendance('asc')">Sort by Lowest Attendance First</button>
+            <button onclick="sortTableByAttendance('desc')">Sort by Highest Attendance First</button>
+            <button onclick="sortTableByPayment('asc')">Sort by Unpaid First</button>
+            <button onclick="sortTableByPayment('desc')">Sort by Paid First</button>
         </div>
         <table id="membersTable">
             <thead>
@@ -60,16 +60,16 @@
 
     <script>
         function sortTableByAttendance(order) {
-            var columnIndex = 6; 
-            sortTable(columnIndex, order);
+            var columnIndex = 5; 
+            sortTable(columnIndex, order, true);
         }
     
         function sortTableByPayment(order) {
-            var columnIndex = 5; 
-            sortTable(columnIndex, order);
+            var columnIndex = 4; 
+            sortTable(columnIndex, order, false);
         }
     
-        function sortTable(columnIndex, order) {
+        function sortTable(columnIndex, order, isNumeric) {
             var table, rows, switching, i, x, y, shouldSwitch;
             table = document.getElementById("membersTable");
             switching = true;
@@ -83,13 +83,21 @@
                     x = rows[i].getElementsByTagName("td")[columnIndex];
                     y = rows[i + 1].getElementsByTagName("td")[columnIndex];
     
+                    if (isNumeric) {
+                        x = Number(x.innerHTML);
+                        y = Number(y.innerHTML);
+                    } else {
+                        x = x.innerHTML.toLowerCase();
+                        y = y.innerHTML.toLowerCase();
+                    }
+    
                     if (order === 'asc') {
-                        if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+                        if (x > y) {
                             shouldSwitch = true;
                             break;
                         }
                     } else if (order === 'desc') {
-                        if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+                        if (x < y) {
                             shouldSwitch = true;
                             break;
                         }
