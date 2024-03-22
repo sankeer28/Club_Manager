@@ -56,7 +56,7 @@ https://github.com/sankeer28/Club_Manager/assets/112449287/ebf67fc2-a315-4975-8f
 - The treasurer can add a new coach and delete a coach
 - when a coach or member is removed they can get an optional email telling them they have been removed from the club
 - Dashboard for coach and member has a greeting with their name 
-- when member or treasurer schedules practice it saves to csv that says who scheduled the practice
+- When member or treasurer schedules practice it saves to csv that says who scheduled the practice
 - coach and treasurer dashboard has a container at the top of their dashboard saying which members scheduled a practice (in-app notification)
 - members can now pay the amount they owe based on attendance
 - treasurer and coach can see a table with members and sort based on if they paid or not and attendance
