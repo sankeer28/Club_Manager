@@ -60,7 +60,7 @@ This project focuses on managing a small amateur club where members gather for r
 6. move users.csv and scheduled_practices.csv outside the Flask folder into the Club_Manager-main folder if you run into errors
 </details>
 
-## Demo 
+## Video Demo 
 https://github.com/sankeer28/Club_Manager/assets/112449287/ebf67fc2-a315-4975-8f90-def2d3b78de2
 
 
