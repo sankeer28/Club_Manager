@@ -44,7 +44,6 @@ This project focuses on managing a small amateur club where members gather for r
 - If this does not work for you, download as [ZIP](https://github.com/sankeer28/Club_Manager/archive/refs/heads/main.zip), Unzip, open the Club_Manager-main folder, then open the 'Flask' folder in VSCode or Pycharm and click run on app.py, also move users.csv and scheduled_practices.csv outside the Flask folder into the Club_Manager-main folder if you run into errors.
 
 ## Demo 
-
 https://github.com/sankeer28/Club_Manager/assets/112449287/ebf67fc2-a315-4975-8f90-def2d3b78de2
 
 
