@@ -54,18 +54,6 @@ This project focuses on managing a small amateur club where members gather for r
 ## Demo 
 https://github.com/sankeer28/Club_Manager/assets/112449287/ebf67fc2-a315-4975-8f90-def2d3b78de2
 
-### Working Features:
-- set schedule uses OpenStreetMap and Nominatim API to turn coordinates from clicking on the map to a named location
-- coach can add and delete members
-- member, coach and treasurer can register accounts and logout
-- The treasurer can schedule practice and delete practice
-- member can view scheduled practices
-- The treasurer can add a new coach and delete a coach
-- when a coach or member is removed they can get an optional email telling them they have been removed from the club
-- Dashboard for coach and member has a greeting with their name 
-- When member or treasurer schedules practice it saves to csv that says who scheduled the practice
-- coach and treasurer dashboard has a container at the top of their dashboard saying which members scheduled a practice (in-app notification)
-- members can now pay the amount they owe based on attendance
 - treasurer and coach can see a table with members and sort based on if they paid or not and attendance
 - in the list of members, if they have unpaid, coach or treasurer can send them email reminding them
 - Treasurer can see total revenue, coach expenses, hall expenses, and profit can also see how much each member paid and how much they owe
