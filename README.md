@@ -69,6 +69,4 @@ https://github.com/sankeer28/Club_Manager/assets/112449287/ebf67fc2-a315-4975-8f
 - treasurer and coach can see a table with members and sort based on if they paid or not and attendance
 - in the list of members, if they have unpaid, coach or treasurer can send them email reminding them
 - Treasurer can see total revenue, coach expenses, hall expenses, and profit can also see how much each member paid and how much they owe
-  ### Next Steps:
-- Make the code better viewable on mobile devices
-- Add quality of life features
+
