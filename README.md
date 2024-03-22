@@ -1,7 +1,15 @@
 # [Recreation Club Membership Application     ](    https://sankeer28.pythonanywhere.com/     )
 
 This project focuses on managing a small amateur club where members gather for regular practices, led by an amateur coach. The club meets weekly, and members can attend as they wish. However, they are required to pay for each practice session, either individually or in advance for a month. The treasurer handles the club's finances, including collecting payments, paying the coach, and covering monthly expenses like rent.
-
+## Technologies Used
+- **Python**
+- **Flask**: web framework for Python
+- **HTML5 and CSS**
+- **JavaScript**
+- **OpenStreetMap and Nominatim API**: Integrated for geocoding and reverse geocoding
+- **CSV**: Data storage
+- **jQuery**
+- **Secure Cookies**: Implemented for session management
 ## Key Features
 
 ### 1. User Management
@@ -45,7 +53,6 @@ This project focuses on managing a small amateur club where members gather for r
 
 ## Demo 
 https://github.com/sankeer28/Club_Manager/assets/112449287/ebf67fc2-a315-4975-8f90-def2d3b78de2
-
 
 ### Working Features:
 - set schedule uses OpenStreetMap and Nominatim API to turn coordinates from clicking on the map to a named location
