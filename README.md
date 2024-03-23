@@ -61,6 +61,7 @@ This project focuses on managing a small amateur club where members gather for r
 </details>
 
 ## Video Demo 
-https://github.com/sankeer28/Club_Manager/assets/112449287/ebf67fc2-a315-4975-8f90-def2d3b78de2
+https://github.com/sankeer28/Club_Manager/assets/112449287/a1743520-5aaf-4e58-8a81-d3f1037fac62
+
 
 
