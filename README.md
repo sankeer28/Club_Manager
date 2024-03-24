@@ -36,7 +36,7 @@ This project focuses on managing a small amateur club where members gather for r
 ```
 2. Install the necessary dependencies. Was tested on Python 3.11.6, Should work on modern Python versions
 ```
- pip install Flask
+ pip install -r requirements.txt
 ```
 4. Open the Flask folder
 ```
