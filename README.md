@@ -9,7 +9,7 @@ This project focuses on managing a small amateur club where members gather for r
 - **OpenStreetMap and Nominatim API**: Integrated for geocoding and reverse geocoding
 - **CSV**: Data storage
 - **jQuery**
-- **Secure Cookies**: Implemented for session management
+- **Secure Cookies / Secure Tokens / Session Keys**: Implemented for session management
 ### ![](https://skillicons.dev/icons?i=python,flask,html,css,js)
 ## Key Features
 
