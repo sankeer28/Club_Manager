@@ -1,7 +1,12 @@
-# [Recreation Club Membership Application     ](    https://sankeer28.pythonanywhere.com/     )
+# [**Recreation Club Membership Application**     ](    https://sankeer28.pythonanywhere.com/     )
+<p align="center">
+  <b><a href="https://sankeer28.pythonanywhere.com/" style="font-size:50px;">Try out the Live Demo 🌐</a></b>
+</p>
+
 
 This project focuses on managing a small amateur club where members gather for regular practices, led by an amateur coach. The club meets weekly, and members can attend as they wish. However, they are required to pay for each practice session. The treasurer handles the club's finances, including collecting payments, paying the coach, and covering monthly expenses like rent.
-## Technologies Used 
+
+$\Huge\textsf{{\color[rgb]{0.0, 0.0, 1.0}Te}{\color[rgb]{0.1, 0.0, 0.9}ch}{\color[rgb]{0.2, 0.0, 0.8}no}{\color[rgb]{0.3, 0.0, 0.7}lo}{\color[rgb]{0.4, 0.0, 0.6}gi}{\color[rgb]{0.5, 0.0, 0.5}es~}{\color[rgb]{0.6, 0.0, 0.4}us}{\color[rgb]{0.7, 0.0, 0.3}ed}}$
 - **Python**
 - **Flask**: web framework for Python
 - **HTML5 and CSS** 
@@ -9,9 +14,9 @@ This project focuses on managing a small amateur club where members gather for r
 - **OpenStreetMap and Nominatim API**: Integrated for geocoding and reverse geocoding
 - **CSV**: Data storage
 - **jQuery**
-- **Secure Cookies / Secure Tokens / Session Keys**: Implemented for session management
+- **Secure Cookies / Secure Tokens / Session Keys**: Implemented for session management and security
 ### ![](https://skillicons.dev/icons?i=python,flask,html,css,js)
-## Key Features
+$\Huge\textsf{{\color[rgb]{1.0, 0.6, 0.0}Ke}{\color[rgb]{1.0, 0.7, 0.0}y~}{\color[rgb]{1.0, 0.8, 0.0}Fe}{\color[rgb]{1.0, 0.9, 0.0}at}{\color[rgb]{1.0, 0.7, 0.0}ur}{\color[rgb]{1.0, 0.6, 0.0}es}}$
 
 ### 1. User Management
 - **Registration:** New members can register an account with their details.
@@ -27,8 +32,8 @@ This project focuses on managing a small amateur club where members gather for r
 - **Track Finances:** The treasurer can view the club's income statement, including revenue and expenses. 
 - **Debt Tracking:** Outstanding debts are logged, allowing the treasurer to prioritize payments. 
 - **Payment Reminders:** Reminders can be sent to members with outstanding payments with Gmail integration. 
-### Try out the [Live Demo 🌐](https://sankeer28.pythonanywhere.com/)
-## Usage Instructions
+
+$\Huge\textsf{{\color[rgb]{1.0, 0.0, 0.0}Us}{\color[rgb]{1.0, 0.2, 0.0}a}{\color[rgb]{1.0, 0.4, 0.0}g}{\color[rgb]{1.0, 0.6, 0.0}e~}{\color[rgb]{1.0, 0.8, 0.0}In}{\color[rgb]{1.0, 0.6, 0.0}s}{\color[rgb]{1.0, 0.4, 0.0}t}{\color[rgb]{1.0, 0.2, 0.0}r}{\color[rgb]{1.0, 0.0, 0.0}u}{\color[rgb]{0.9, 0.0, 0.2}c}{\color[rgb]{0.8, 0.0, 0.4}t}{\color[rgb]{0.7, 0.0, 0.6}i}{\color[rgb]{0.6, 0.0, 0.8}o}{\color[rgb]{0.5, 0.0, 1.0}n}{\color[rgb]{0.5, 0.0, 0.9}s}}$
 - You are expected to have a relatively new version of Python and Git installed
 1. Clone the repository to your local machine.
 ```
@@ -61,7 +66,8 @@ This project focuses on managing a small amateur club where members gather for r
 6. move users.csv and scheduled_practices.csv outside the Flask folder into the Club_Manager-main folder if you run into errors
 </details>
 
-## Video Demo 
+$\Huge\textsf{{\color[rgb]{0.0, 0.5, 0.0}V}{\color[rgb]{0.1, 0.6, 0.1}i}{\color[rgb]{0.2, 0.7, 0.2}d}{\color[rgb]{0.3, 0.8, 0.3}e}{\color[rgb]{0.4, 0.9, 0.4}o~}{\color[rgb]{0.5, 1.0, 0.5}D}{\color[rgb]{0.4, 0.9, 0.4}e}{\color[rgb]{0.3, 0.8, 0.3}m}{\color[rgb]{0.2, 0.7, 0.2}o}}$
+#### ▶️
 https://github.com/sankeer28/Club_Manager/assets/112449287/a1743520-5aaf-4e58-8a81-d3f1037fac62
 
 
