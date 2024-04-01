@@ -13,9 +13,8 @@ $\Huge\textsf{{\color[rgb]{0.0, 0.0, 1.0}Te}{\color[rgb]{0.1, 0.0, 0.9}ch}{\colo
 - **JavaScript**
 - **OpenStreetMap and Nominatim API**: Integrated for geocoding and reverse geocoding
 - **CSV**: Data storage
-- **jQuery**
 - **Secure Cookies / Secure Tokens / Session Keys**: Implemented for session management and security
-### ![](https://skillicons.dev/icons?i=python,flask,html,css,js)
+### ![](https://skillicons.dev/icons?i=python,flask,html,css,js,nodejs)
 $\Huge\textsf{{\color[rgb]{1.0, 0.6, 0.0}Ke}{\color[rgb]{1.0, 0.7, 0.0}y~}{\color[rgb]{1.0, 0.8, 0.0}Fe}{\color[rgb]{1.0, 0.9, 0.0}at}{\color[rgb]{1.0, 0.7, 0.0}ur}{\color[rgb]{1.0, 0.6, 0.0}es}}$
 
 ### 1. User Management
