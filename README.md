@@ -64,8 +64,6 @@ $\Huge\textsf{{\color[rgb]{1.0, 0.0, 0.0}Us}{\color[rgb]{1.0, 0.2, 0.0}a}{\color
 5. click run on app.py
 6. move users.csv and scheduled_practices.csv outside the Flask folder into the Club_Manager-main folder if you run into errors
 </details>
-
-
 <details>
 <summary>$\Huge\textsf{{\color[rgb]{0.0, 0.5, 0.0}V}{\color[rgb]{0.1, 0.6, 0.1}i}{\color[rgb]{0.2, 0.7, 0.2}d}{\color[rgb]{0.3, 0.8, 0.3}e}{\color[rgb]{0.4, 0.9, 0.4}o~}{\color[rgb]{0.5, 1.0, 0.5}D}{\color[rgb]{0.4, 0.9, 0.4}e}{\color[rgb]{0.3, 0.8, 0.3}m}{\color[rgb]{0.2, 0.7, 0.2}o}}$</summary>
   
