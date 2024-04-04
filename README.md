@@ -51,6 +51,7 @@ $\Huge\textsf{{\color[rgb]{1.0, 0.0, 0.0}Us}{\color[rgb]{1.0, 0.2, 0.0}a}{\color
 ```
  flask run
 ```
+
 4. You will get a message like ``` * Running on http://127.0.0.1:5000 ``` ctrl + click on it or copy-paste into browser. Mac users may encounter issues where AirPlay Receiver is using port 5000, there are tutorials online on how to fix.
 5. Register or log in as a member, coach, or treasurer.
 6. Explore the available features based on your role.
@@ -64,11 +65,18 @@ $\Huge\textsf{{\color[rgb]{1.0, 0.0, 0.0}Us}{\color[rgb]{1.0, 0.2, 0.0}a}{\color
 5. click run on app.py
 6. move users.csv and scheduled_practices.csv outside the Flask folder into the Club_Manager-main folder if you run into errors
 </details>
-<details>
-<summary>$\Huge\textsf{{\color[rgb]{0.0, 0.5, 0.0}V}{\color[rgb]{0.1, 0.6, 0.1}i}{\color[rgb]{0.2, 0.7, 0.2}d}{\color[rgb]{0.3, 0.8, 0.3}e}{\color[rgb]{0.4, 0.9, 0.4}o~}{\color[rgb]{0.5, 1.0, 0.5}D}{\color[rgb]{0.4, 0.9, 0.4}e}{\color[rgb]{0.3, 0.8, 0.3}m}{\color[rgb]{0.2, 0.7, 0.2}o}}$</summary>
-  
-https://github.com/sankeer28/Club_Manager/assets/112449287/a1743520-5aaf-4e58-8a81-d3f1037fac62
 
-<summary>
+                            
+
+                                                                                                                                                                                              
+https://github.com/sankeer28/Club_Manager/assets/112449287/a1743520-5aaf-4e58-8a81-d3f1037fac62
+                                                                                        
+
+
+
+
+## Disclaimer
+This project is for **personal use only**. **Educational use** is **not allowed**, as this was a school project. Copying or reusing this code without explicit permission would constitute **academic misconduct**.
+
 
 
